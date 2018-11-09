@@ -110,7 +110,7 @@ Ross: I'll get it.
 
 Susan: No, I'm getting it. I'll be right back.
 
-Ross: I got it I'm getting it!
+Ross: I got it -I'm getting it!
 
 (They both leave just as Rachel enters the room, holding a cup.)
 
@@ -118,8 +118,8 @@ Rachel: Hi, I thought you might like some ice chips.
 
 Carol: Thanks.
 
-Rachel: And if you need anything else, I (notices the handsome Dr.
-Franzblau)do not believe we've met. Hi. I'm, uh, Rachel Green. I'm Carol's...
+Rachel: And if you need anything else, I -(notices the handsome Dr.
+Franzblau)-do not believe we've met. Hi. I'm, uh, Rachel Green. I'm Carol's...
 ex-husband's... sister's roommate.
 
 Dr. Franzblau: It is nice to meet you. I'm Dr. Franzblau. I'm your
@@ -463,8 +463,8 @@ lay her back down) There you go, dear.
 
 Joey: Come on, Lydia, you can do it. Push! Push 'em out, push 'em out,
 harder, harder. Push 'em out, push 'em out, way out! Let's get that ball and
-really move, hey, hey, ho, ho. Let's  (notices the nurse looking at him
-strangely) I was justyeah, right. Push! Push!
+really move, hey, hey, ho, ho. Let's - (notices the nurse looking at him
+strangely) I was just-yeah, right. Push! Push!
 
 [Scene: The Broom Closet, Ross has picked up a vacuum and is holding it at the
 door.]
@@ -651,7 +651,7 @@ Carol: (irked) Where have you been?
 Ross: Long story, honey.
 
 Dr. Franzblau: All right, Carol, I need you to keep pushing. I need
-(reaches for an instrument, Rachel's hand is on it) Excuse me, could I have
+-(reaches for an instrument, Rachel's hand is on it) Excuse me, could I have
 this?
 
 Nurse: All right, all right, there's a few too many people in this room,
