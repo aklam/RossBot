@@ -6,7 +6,7 @@ html2text to make scripts txt files
 https://github.com/Alir3z4/html2text
 
 Done:
-Cleaned all of season 1-5 and outtakes7 in clean_scripts
+Cleaned all in clean_scripts
 
 TODO:
-Everything else
+apply pairing script to everything
