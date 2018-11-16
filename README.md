@@ -44,6 +44,26 @@ https://arxiv.org/abs/1705.03122
 http://papers.nips.cc/paper/5955-convolutional-lstm-network-a-machine-learning-approach-for-precipitation-nowcasting
 - Convolutional LSTMs for precipitation forecasting
 
+https://arxiv.org/pdf/1708.00818.pdf
+- Startrek-like bot 
+- Weird branching, Startrek vs normal conversation
+
+https://www.quora.com/How-do-you-design-the-personality-of-a-chatbot
+- Oftentimes add personality to chatbot to make customer experience more relatable/human
+- Try to make conversation more fluid and natural, not try to emulate a target personality 
+
+Stanford CS20Si very useful
+- http://web.stanford.edu/class/cs20si/lectures/slides_13.pdf
+       -> About chatbots using RNN
+- http://web.stanford.edu/class/cs20si/lectures/slides_11.pdf
+       -> RNN history/background
+
+https://arxiv.org/pdf/1412.3555v1.pdf
+- LSTM vs GRU, about equal performance 
+
+http://www.aclweb.org/anthology/C16-1229
+- Convolution and RNN combination
+
 Done:
 Cleaned all in clean_scripts
 
