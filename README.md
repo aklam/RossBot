@@ -2,8 +2,13 @@
 Work in progress 
 HTML Friends scripts from: https://fangj.github.io/friends/
 
+Movie scripts from: http://www.cs.cornell.edu/~cristian//Cornell_Movie-Dialogs_Corpus.html
+
 html2text to make scripts txt files
 https://github.com/Alir3z4/html2text
+
+word2vec paper
+https://arxiv.org/pdf/1301.3781.pdf
 
 Research: 
 Models from: https://awesome-chatbot.readthedocs.io/en/latest/README/
@@ -64,8 +69,11 @@ https://arxiv.org/pdf/1412.3555v1.pdf
 http://www.aclweb.org/anthology/C16-1229
 - Convolution and RNN combination
 
-Done:
-Cleaned all in clean_scripts
+https://code.google.com/archive/p/word2vec/
+- Google's word2vec
+
+https://medium.freecodecamp.org/how-to-get-started-with-word2vec-and-then-how-to-make-it-work-d0a2fca9dad3
+word2vec download
 
 TODO:
 apply pairing script to everything
