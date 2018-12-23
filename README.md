@@ -10,6 +10,9 @@ https://github.com/Alir3z4/html2text
 word2vec paper
 https://arxiv.org/pdf/1301.3781.pdf
 
+Definitely use: NMT-keras
+https://github.com/lvapeab/nmt-keras
+
 Research: 
 Models from: https://awesome-chatbot.readthedocs.io/en/latest/README/
 
