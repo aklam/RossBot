@@ -98,17 +98,14 @@ params['TRG_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
 params['ENCODER_RNN_TYPE'] = 'GRU'
 params['DECODER_RNN_TYPE'] = 'GRU'
 
-params['N_LAYERS_ENCODER'] = 2
-params['N_LAYERS_DECODER'] = 2
-params['ENCODER_HIDDEN_SIZE'] = 512
-params['DECODER_HIDDEN_SIZE'] = 512
-params['MODEL_SIZE'] = 512
+#params['N_LAYERS_ENCODER'] = 2
+#params['N_LAYERS_DECODER'] = 2
+#params['ENCODER_HIDDEN_SIZE'] = 512
+#params['DECODER_HIDDEN_SIZE'] = 512
+#params['MODEL_SIZE'] = 512
 
-params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
-params['ATTENTION_SIZE'] = 512
-
-for k, v in params.iteritems():
-	print(str(k) + ": " + str(v))
+#params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
+#params['ATTENTION_SIZE'] = 512
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
