@@ -87,6 +87,11 @@ params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['target_text']
 params['MODEL_NAME'] = "Test123"
 params['STORE_PATH'] = "~/RossBot/Test123"
 
+params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
+params['SRC_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
+params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
+params['TRG_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
+
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
 	model_name='tutorial_model',
