@@ -18,7 +18,7 @@ dataset.setInput('data/Cornell_test_query.en',
 	type='text',
 	id='source_text',
 	pad_on_batch=True,
-	tokenization='tokenize_none',
+	tokenization='tokenize_basic',
 	fill='end',
 	max_text_len=100,
 	min_occ=0)
@@ -57,7 +57,7 @@ dataset.setOutput('data/Cornell_test_reply.en',
 	type='text', 
 	id='target_text', 
 	pad_on_batch=True, 
-	tokenization='tokenize_none', 
+	tokenization='tokenize_basic', 
 	sample_weights=True, 
 	max_text_len=30, 
 	max_words=0)
@@ -69,7 +69,7 @@ keep_n_captions(dataset, repeat=1, n=1, set_names=['test'])
 metric = 'coco'
 #Apply sampling
 extra_vars = dict()
-extra_vars['tokenize_f'] = eval('dataset.' + 'tokenize_none')
+extra_vars['tokenize_f'] = eval('dataset.' + 'tokenize_basic')
 extra_vars['language'] = params['TRG_LAN']
 extra_vars['test'] = dict()
 extra_vars['test']['references'] = dataset.extra_variables['test']['target_text']
