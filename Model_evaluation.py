@@ -6,8 +6,7 @@ from config import load_parameters
 from data_engine.prepare_data import keep_n_captions
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
-from keras_wrapper.extra.read_write import list2file
-from keras_wrapper.extra import evaluation
+
 
 params = load_parameters()
 dataset = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
@@ -44,6 +43,10 @@ predictions = decode_predictions_beam_search(predictions, vocab, verbose=params[
 list2file("~/test_sampling.pred", predictions)
 
 ## see how they compare to ground truth
+from model_zoo import TranslationModel
+from keras_wrapper.extra.read_write import list2file
+from keras_wrapper.extra import evaluation
+
 dataset.setOutput('data/Cornell_test_reply.en', 'test', type='text', id='target_text', pad_on_batch=True, tokenization='tokenize_none', sample_weights=True, max_text_len=30, max_words=0)
 
 keep_n_captions(dataset, repeat=1, n=1, set_names=['test'])
