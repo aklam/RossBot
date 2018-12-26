@@ -48,7 +48,8 @@ predictions = decode_predictions_beam_search(predictions, vocab, verbose=params[
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-list2file("~/test_sampling.pred", predictions)
+f_path = model.model_path+'/test_sampling.pred'
+list2file(f_path, predictions)
 
 
 dataset.setOutput('data/Cornell_test_reply.en', 'test', type='text', id='target_text', pad_on_batch=True, tokenization='tokenize_none', sample_weights=True, max_text_len=30, max_words=0)
@@ -63,3 +64,5 @@ extra_vars['language'] = params['TRG_LAN']
 extra_vars['test'] = dict()
 extra_vars['test']['references'] = dataset.extra_variables['test']['target_text']
 metrics = evaluation.select[metric](pred_list=predictions, verbose=1, extra_vars=extra_vars, split='test')
+
+print(metrics)
