@@ -42,22 +42,24 @@ predictions = model.predictBeamSearchNet(dataset, params_prediction)['test']
 vocab = dataset.vocabulary['target_text']['idx2words']
 predictions = decode_predictions_beam_search(predictions, vocab, verbose=params['VERBOSE'])
 
-list2file("~/test_sampling.pred", predictions)
 
 ## see how they compare to ground truth
 #
-#from keras_wrapper.extra.read_write import list2file
-#from keras_wrapper.extra import evaluation
+from keras_wrapper.extra.read_write import list2file
+from keras_wrapper.extra import evaluation
 
-#dataset.setOutput('data/Cornell_test_reply.en', 'test', type='text', id='target_text', pad_on_batch=True, tokenization='tokenize_none', sample_weights=True, max_text_len=30, max_words=0)
+list2file("~/test_sampling.pred", predictions)
 
-#keep_n_captions(dataset, repeat=1, n=1, set_names=['test'])
 
-#metric = 'coco'
-# Apply sampling
-#extra_vars = dict()
-#extra_vars['tokenize_f'] = eval('dataset.' + 'tokenize_none')
-#extra_vars['language'] = params['TRG_LAN']
-#extra_vars['test'] = dict()
-#extra_vars['test']['references'] = dataset.extra_variables['test']['target_text']
-#metrics = evaluation.select[metric](pred_list=predictions, verbose=1, extra_vars=extra_vars, split='test')
+dataset.setOutput('data/Cornell_test_reply.en', 'test', type='text', id='target_text', pad_on_batch=True, tokenization='tokenize_none', sample_weights=True, max_text_len=30, max_words=0)
+
+keep_n_captions(dataset, repeat=1, n=1, set_names=['test'])
+
+metric = 'coco'
+ Apply sampling
+extra_vars = dict()
+extra_vars['tokenize_f'] = eval('dataset.' + 'tokenize_none')
+extra_vars['language'] = params['TRG_LAN']
+extra_vars['test'] = dict()
+extra_vars['test']['references'] = dataset.extra_variables['test']['target_text']
+metrics = evaluation.select[metric](pred_list=predictions, verbose=1, extra_vars=extra_vars, split='test')
