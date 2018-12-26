@@ -20,15 +20,15 @@ ds.setInput('data/Cornell_train_query.en',
 	max_words=30000,
 	min_occ=0)
 
-#ds.setInput('data/Cornell_valid_query.en',
-#	'val',
-#	type='text',
-#	id='source_text',
-#	pad_on_batch=True,
-#	tokenization='tokenize_none',
-#	fill='end',
-#	max_text_len=30,
-#	max_words=0)
+ds.setInput('data/Cornell_valid_query.en',
+	'val',
+	type='text',
+	id='source_text',
+	pad_on_batch=True,
+	tokenization='tokenize_none',
+	fill='end',
+	max_text_len=30,
+	max_words=0)
 
 ds.setInput('data/Cornell_train_reply_offset.en',
 	'train',
@@ -43,12 +43,12 @@ ds.setInput('data/Cornell_train_reply_offset.en',
 	max_text_len=30,
 	max_words=30000)
 
-#ds.setInput(None, 
-#	'val',
-#	type='ghost',
-#	id='state_below',
-#	pad_on_batch=True,
-#	required=False)
+ds.setInput(None, 
+	'val',
+	type='ghost',
+	id='state_below',
+	pad_on_batch=True,
+	required=False)
 
 ds.setOutput('data/Cornell_train_reply.en',
 	'train',
@@ -62,23 +62,21 @@ ds.setOutput('data/Cornell_train_reply.en',
 	max_words=30000,
 	min_occ=0)
 
-#ds.setOutput('data/Cornell_valid_reply.en',
-#	'val',
-#	type='text',
-#	id='target_text',
-#	pad_on_batch=True,
-#	tokenization='tokenize_none',
-#	sample_weights=True,
-#	max_text_len=30,
-#	max_words=0)
+ds.setOutput('data/Cornell_valid_reply.en',
+	'val',
+	type='text',
+	id='target_text',
+	pad_on_batch=True,
+	tokenization='tokenize_none',
+	sample_weights=True,
+	max_text_len=30,
+	max_words=0)
 
 ds.merge_vocabularies(['source_text', 'target_text'])
 
 print(ds)
 
 keep_n_captions(ds, repeat=1, n=1, set_names=['val'])
-
-saveDataset(ds, 'query_to_reply')
 
 sys.path.append('../nmt-keras/nmt_keras')
 from config import load_parameters
@@ -99,7 +97,6 @@ params['MODEL_NAME'] = "Test123"
 
 
 #Model parameters
-params['REBUILD_DATASET']  =  False 
 params['ENCODER_RNN_TYPE'] = 'GRU'
 params['DECODER_RNN_TYPE'] = 'GRU'
 
