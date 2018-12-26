@@ -56,7 +56,7 @@ dataset.setOutput('data/Cornell_test_reply.en', 'test', type='text', id='target_
 keep_n_captions(dataset, repeat=1, n=1, set_names=['test'])
 
 metric = 'coco'
- Apply sampling
+#Apply sampling
 extra_vars = dict()
 extra_vars['tokenize_f'] = eval('dataset.' + 'tokenize_none')
 extra_vars['language'] = params['TRG_LAN']
