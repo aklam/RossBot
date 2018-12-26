@@ -47,6 +47,7 @@ ds.setInput(None,
 	'val',
 	type='ghost',
 	id='state_below',
+	pad_on_batch=True,
 	required=False)
 
 ds.setOutput('data/Cornell_train_reply.en',
@@ -70,6 +71,8 @@ ds.setOutput('data/Cornell_valid_reply.en',
 	sample_weights=True,
 	max_text_len=30,
 	max_words=0)
+
+print(ds)
 
 keep_n_captions(ds, repeat=1, n=1, set_names=['val'])
 
