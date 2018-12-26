@@ -20,15 +20,15 @@ ds.setInput('data/Cornell_train_query.en',
 	max_words=30000,
 	min_occ=0)
 
-ds.setInput('data/Cornell_valid_query.en',
-	'val',
-	type='text',
-	id='source_text',
-	pad_on_batch=True,
-	tokenization='tokenize_none',
-	fill='end',
-	max_text_len=30,
-	max_words=0)
+#ds.setInput('data/Cornell_valid_query.en',
+#	'val',
+#	type='text',
+#	id='source_text',
+#	pad_on_batch=True,
+#	tokenization='tokenize_none',
+#	fill='end',
+#	max_text_len=30,
+#	max_words=0)
 
 ds.setInput('data/Cornell_train_reply_offset.en',
 	'train',
@@ -43,12 +43,12 @@ ds.setInput('data/Cornell_train_reply_offset.en',
 	max_text_len=30,
 	max_words=30000)
 
-ds.setInput(None, 
-	'val',
-	type='ghost',
-	id='state_below',
-	pad_on_batch=True,
-	required=False)
+#ds.setInput(None, 
+#	'val',
+#	type='ghost',
+#	id='state_below',
+#	pad_on_batch=True,
+#	required=False)
 
 ds.setOutput('data/Cornell_train_reply.en',
 	'train',
@@ -62,15 +62,15 @@ ds.setOutput('data/Cornell_train_reply.en',
 	max_words=30000,
 	min_occ=0)
 
-ds.setOutput('data/Cornell_valid_reply.en',
-	'val',
-	type='text',
-	id='target_text',
-	pad_on_batch=True,
-	tokenization='tokenize_none',
-	sample_weights=True,
-	max_text_len=30,
-	max_words=0)
+#ds.setOutput('data/Cornell_valid_reply.en',
+#	'val',
+#	type='text',
+#	id='target_text',
+#	pad_on_batch=True,
+#	tokenization='tokenize_none',
+#	sample_weights=True,
+#	max_text_len=30,
+#	max_words=0)
 
 ds.merge_vocabularies(['source_text', 'target_text'])
 
@@ -90,7 +90,6 @@ params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['source_text']
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['target_text']
 params['MODEL_NAME'] = "Test123"
-params['STORE_PATH'] = "~/RossBot/Test123"
 
 #params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 #params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
