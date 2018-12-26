@@ -13,7 +13,7 @@ from model_zoo import TranslationModel
 params = load_parameters()
 dataset = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 
-dataset.setInput(['data/Cornell_test_query.en'],
+dataset.setInput('data/Cornell_test_query.en',
 	'test', 
 	type='text',
 	id='source_text',
@@ -52,7 +52,7 @@ f_path = model.model_path+'/test_sampling.pred'
 list2file(f_path, predictions)
 
 
-dataset.setOutput(['data/Cornell_test_reply.en'], 
+dataset.setOutput('data/Cornell_test_reply.en', 
 	'test', 
 	type='text', 
 	id='target_text', 
@@ -61,6 +61,8 @@ dataset.setOutput(['data/Cornell_test_reply.en'],
 	sample_weights=True, 
 	max_text_len=30, 
 	max_words=0)
+
+print(dataset)
 
 keep_n_captions(dataset, repeat=1, n=1, set_names=['test'])
 
