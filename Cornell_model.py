@@ -104,6 +104,9 @@ params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
 
+params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
+params['ATTENTION_SIZE'] = 512
+
 for k, v in params.iteritems():
 	print(str(k) + ": " + str(v))
 
