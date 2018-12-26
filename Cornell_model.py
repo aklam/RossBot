@@ -82,8 +82,8 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 params = load_parameters()
-params['INPUT_VOCABULARY_SIZE'] = 0 
-params['OUTPUT_VOCABULARY_SIZE'] = 0
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['source_text']
+params['OUTPUT_VOCABULARY_SIZE'] = ds.t.vocabulary_len['target_text']
 params['MODEL_NAME'] = "Test123"
 params['STORE_PATH'] = "~/RossBot/Test123"
 
