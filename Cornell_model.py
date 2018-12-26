@@ -8,34 +8,34 @@ cornell_path = '/data'
 
 ds = Dataset(dataset_name, cornell_path)
 
-ds.setInput(['/data/Cornell_train_query.en'],
+ds.setInput('data/Cornell_train_query.en',
 	'train',
 	type='text',
 	id='source_text',
 	pad_on_batch=True,
-	tokenization='tokenize_basic',
+	tokenization='tokenize_none',
 	build_vocabulary=True,
 	fill='end',
 	max_text_len=30,
 	max_words=30000,
 	min_occ=0)
 
-ds.setInput(['/data/Cornell_valid_query.en'],
+ds.setInput('data/Cornell_valid_query.en',
 	'val',
 	type='text',
 	id='source_text',
 	pad_on_batch=True,
-	tokenization='tokenize_basic',
+	tokenization='tokenize_none',
 	fill='end',
 	max_text_len=30,
 	max_words=0)
 
-ds.setInput(['/data/Cornell_train_reply_offset.en'],
+ds.setInput('data/Cornell_train_reply_offset.en',
 	'train',
 	type='text',
 	id='state_below',
 	required=False,
-	tokenization='tokenize_basic',
+	tokenization='tokenize_none',
 	pad_on_batch=True,
 	build_vocabulary='target_text',
 	offset=1,
@@ -49,11 +49,11 @@ ds.setInput(None,
 	id='state_below',
 	required=False)
 
-ds.setOutput(['data/Cornell_train_reply.en'],
+ds.setOutput('data/Cornell_train_reply.en',
 	'train',
 	type='text',
 	id='target_text',
-	tokenization='tokenize_basic',
+	tokenization='tokenize_none',
 	build_vocabulary=True,
 	pad_on_batch=True,
 	sample_weights=True,
@@ -61,12 +61,12 @@ ds.setOutput(['data/Cornell_train_reply.en'],
 	max_words=30000,
 	min_occ=0)
 
-ds.setOutput(['data/Cornell_valid_reply.en'],
+ds.setOutput('data/Cornell_valid_reply.en',
 	'val',
 	type='text',
 	id='target_text',
 	pad_on_batch=True,
-	tokenization='tokenize_basic',
+	tokenization='tokenize_none',
 	sample_weights=True,
 	max_text_len=30,
 	max_words=0)
@@ -111,7 +111,7 @@ nmt_model = TranslationModel(params,
 	model_type='GroundHogModel',
 	model_name='Dec_25',
 	vocabularies=ds.vocabulary,
-	store_path='trained_models/Dec_25/',
+	store_path='trained_models/Dec_26/',
 	verbose=True)
 
 inputMapping = dict()
