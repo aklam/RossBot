@@ -90,8 +90,8 @@ params['STORE_PATH'] = "~/RossBot/Test123"
 params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
 
-params['SRC_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
-params['TRG_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
+params['SRC_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
+params['TRG_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
 
 
 #Model parameters
