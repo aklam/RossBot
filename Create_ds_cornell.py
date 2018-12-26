@@ -72,7 +72,7 @@ ds.setOutput('data/Cornell_valid_reply.en',
     max_text_len=30,
     max_words=0)
 
-ds.merge_vocabularies(['source_text', 'target_text'])
+#ds.merge_vocabularies(['source_text', 'target_text'])
 
 print(ds)
 

@@ -11,7 +11,6 @@ ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['source_text']
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['target_text']
-params['MODEL_NAME'] = "Test123"
 
 #params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 #params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
@@ -21,17 +20,17 @@ params['MODEL_NAME'] = "Test123"
 
 
 #Model parameters
-params['ENCODER_RNN_TYPE'] = 'GRU'
-params['DECODER_RNN_TYPE'] = 'GRU'
+#params['ENCODER_RNN_TYPE'] = 'GRU'
+#params['DECODER_RNN_TYPE'] = 'GRU'
 
 #params['N_LAYERS_ENCODER'] = 2
 #params['N_LAYERS_DECODER'] = 2
-params['ENCODER_HIDDEN_SIZE'] = 512
-params['DECODER_HIDDEN_SIZE'] = 512
-params['MODEL_SIZE'] = 512
+#params['ENCODER_HIDDEN_SIZE'] = 512
+#params['DECODER_HIDDEN_SIZE'] = 512
+#params['MODEL_SIZE'] = 512
 
-params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
-params['ATTENTION_SIZE'] = 512
+#params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
+#params['ATTENTION_SIZE'] = 512
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
