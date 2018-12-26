@@ -82,7 +82,7 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 params = load_parameters()
-params['INPUT_VOCABULARY_SIZE'] = 0
+params['INPUT_VOCABULARY_SIZE'] = 0 
 params['OUTPUT_VOCABULARY_SIZE'] = 0
 params['MODEL_NAME'] = "Test123"
 params['STORE_PATH'] = "~/RossBot/Test123"
@@ -104,9 +104,12 @@ params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
 
+for k, v in params.iteritems():
+	print(str(k) + ": " + str(v))
+
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-	model_name='tutorial_model',
+	model_name='Dec_25',
 	vocabularies=ds.vocabulary,
 	store_path='trained_models/Dec_25/',
 	verbose=True)
