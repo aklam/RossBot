@@ -82,8 +82,8 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 params = load_parameters()
-params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['source_text']
-params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['target_text']
+params['INPUT_VOCABULARY_SIZE'] = 0
+params['OUTPUT_VOCABULARY_SIZE'] = 0
 params['MODEL_NAME'] = "Test123"
 params['STORE_PATH'] = "~/RossBot/Test123"
 
@@ -91,6 +91,16 @@ params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['SRC_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
 params['TRG_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
+
+
+#Model parameters
+params['ENCODER_RNN_TYPE'] = 'GRU'
+params['DECODER_RNN_TYPE'] = 'ConditionalGRU'
+
+params['N_LAYERS_ENCODER'] = 2
+params['N_LAYERS_DECODER'] = 2
+params['ENCODER_HIDDEN_SIZE'] = 512
+params['DECODER_HIDDEN_SIZE'] = 512
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
