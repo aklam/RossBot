@@ -100,11 +100,12 @@ params['STORE_PATH'] = "~/RossBot/Test123"
 
 
 #Model parameters
+params['REBUILD_DATASET']  =  False 
 params['ENCODER_RNN_TYPE'] = 'GRU'
 params['DECODER_RNN_TYPE'] = 'GRU'
 
-params['N_LAYERS_ENCODER'] = 2
-params['N_LAYERS_DECODER'] = 2
+#params['N_LAYERS_ENCODER'] = 2
+#params['N_LAYERS_DECODER'] = 2
 params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
