@@ -96,7 +96,7 @@ params['TRG_PRETRAINED_VECTORS'] = 'Google_w2v.npy'
 
 #Model parameters
 params['ENCODER_RNN_TYPE'] = 'GRU'
-params['DECODER_RNN_TYPE'] = 'ConditionalGRU'
+params['DECODER_RNN_TYPE'] = 'GRU'
 
 params['N_LAYERS_ENCODER'] = 2
 params['N_LAYERS_DECODER'] = 2
