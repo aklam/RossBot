@@ -8,7 +8,7 @@ cornell_path = '/data'
 
 ds = Dataset(dataset_name, cornell_path)
 
-ds.setInput(['/data/Cornell_train_query.en'],
+ds.setInput('/data/Cornell_train_query.en',
 	'train',
 	type='text',
 	id='source_text',
@@ -20,7 +20,7 @@ ds.setInput(['/data/Cornell_train_query.en'],
 	max_words=30000,
 	min_occ=0)
 
-ds.setInput(['/data/Cornell_valid_query.en'],
+ds.setInput('/data/Cornell_valid_query.en',
 	'val',
 	type='text',
 	id='source_text',
@@ -30,7 +30,7 @@ ds.setInput(['/data/Cornell_valid_query.en'],
 	max_text_len=30,
 	max_words=0)
 
-ds.setInput(['/data/Cornell_train_reply_offset.en'],
+ds.setInput('/data/Cornell_train_reply_offset.en',
 	'train',
 	type='text',
 	id='state_below',
@@ -49,7 +49,7 @@ ds.setInput(None,
 	id='state_below',
 	required=False)
 
-ds.setOutput(['data/Cornell_train_reply.en'],
+ds.setOutput('data/Cornell_train_reply.en',
 	'train',
 	type='text',
 	id='target_text',
@@ -61,7 +61,7 @@ ds.setOutput(['data/Cornell_train_reply.en'],
 	max_words=30000,
 	min_occ=0)
 
-ds.setOutput(['data/Cornell_valid_reply.en'],
+ds.setOutput('data/Cornell_valid_reply.en',
 	'val',
 	type='text',
 	id='target_text',
@@ -111,7 +111,7 @@ nmt_model = TranslationModel(params,
 	model_type='GroundHogModel',
 	model_name='Dec_25',
 	vocabularies=ds.vocabulary,
-	store_path='trained_models/Dec_25/',
+	store_path='trained_models/Dec_26/',
 	verbose=True)
 
 inputMapping = dict()
@@ -128,7 +128,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 2000, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 20, 'verbose': 0, 'eval_on_sets': [], 'n_parallel_loaders': 8, 'reload_epoch': 0, 'epoch_offset': 0}
+training_params = {'n_epochs': 100, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 20, 'verbose': 0, 'eval_on_sets': [], 'n_parallel_loaders': 8, 'reload_epoch': 0, 'epoch_offset': 0}
 
 nmt_model.trainNet(ds, training_params)
 
