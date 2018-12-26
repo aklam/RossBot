@@ -109,7 +109,7 @@ params['ATTENTION_SIZE'] = 512
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-	model_name='Dec_25',
+	model_name='Dec_26',
 	vocabularies=ds.vocabulary,
 	store_path='trained_models/Dec_26/',
 	verbose=True)
@@ -128,7 +128,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 2000, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 20, 'verbose': 0, 'eval_on_sets': [], 'n_parallel_loaders': 8, 'reload_epoch': 0, 'epoch_offset': 0}
+training_params = {'n_epochs': 100, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 20, 'verbose': 0, 'eval_on_sets': [], 'n_parallel_loaders': 8, 'reload_epoch': 0}
 
 nmt_model.trainNet(ds, training_params)
 
