@@ -7,7 +7,7 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 
-ds = loadDataset('query_to_reply/query_to_reply.pkl')
+ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['source_text']
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len['target_text']
