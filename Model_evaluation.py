@@ -34,7 +34,7 @@ dataset.setInput(None,
 params['INPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-model = loadModel('trained_models/Dec_26', 1)
+model = loadModel('trained_models/Dec_26', 10)
 
 params_prediction = {'max_batch_size': 50, 'n_parallel_loaders': 8, 'predict_on_sets': ['test'], 'beam_size': 12, 'maxlen': 50, 'model_inputs': ['source_text', 'state_below'], 'model_outputs': ['target_text'], 'dataset_inputs': ['source_text', 'state_below'], 'dataset_outputs': ['target_text'], 'normalize': True, 'alpha_factor': 0.6 }
 
