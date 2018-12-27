@@ -14,6 +14,6 @@ from model_zoo import TranslationModel
 Cornell_Rd2 = loadDataset('query_to_reply/Dataset_Cornell_Rd2.pkl')
 model = loadModel('trained_models/Dec_26', 1)
 
-training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 1}
+training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
 model.trainNet(Cornell_Rd2, training_params)
