@@ -16,4 +16,4 @@ model = loadModel('trained_models/Dec_26', 1)
 
 training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 1}
 
-nmt_model.trainNet(ds, training_params)
+model.trainNet(ds, training_params)
