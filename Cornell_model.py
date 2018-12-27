@@ -12,11 +12,11 @@ params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
-params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
+#params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
+#params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
 
-params['SRC_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
-params['TRG_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
+#params['SRC_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
+#params['TRG_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
 
 
 #Model parameters
@@ -28,8 +28,8 @@ params['DECODER_RNN_TYPE'] = 'GRU'
 params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
-params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = False
-params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False 
+#params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = False
+#params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False 
 
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
