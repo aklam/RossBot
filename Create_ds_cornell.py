@@ -18,7 +18,7 @@ ds.setInput('data/Cornell_train_query.en',
     tokenization='tokenize_basic',
     build_vocabulary=True,
     fill='end',
-    max_text_len=30,
+    max_text_len=100,
     max_words=30000,
     min_occ=0)
 
@@ -29,7 +29,7 @@ ds.setInput('data/Cornell_valid_query.en',
     pad_on_batch=True,
     tokenization='tokenize_basic',
     fill='end',
-    max_text_len=30,
+    max_text_len=100,
     max_words=0)
 
 ds.setInput('data/Cornell_train_reply_offset.en',
@@ -42,7 +42,7 @@ ds.setInput('data/Cornell_train_reply_offset.en',
     build_vocabulary='target_text',
     offset=1,
     fill='end',
-    max_text_len=30,
+    max_text_len=100,
     max_words=30000)
 
 ds.setInput(None, 
