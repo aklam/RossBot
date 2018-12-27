@@ -13,8 +13,8 @@ from keras_wrapper.utils import decode_predictions_beam_search
 from model_zoo import TranslationModel
 
 def make_Cornell_round2():
-    Cornell_rd2 = Dataset('Cornell_Rd2', '/data')
-    Cornell_rd2.setInput('data/Cornell_train_2_query.en',
+    ds = Dataset('Cornell_Rd2', '/data')
+    ds.setInput('data/Cornell_train_2_query.en',
         'train',
         type='text',
         id='source_text',
@@ -84,8 +84,8 @@ def make_Cornell_round2():
 
 
 def make_Ross_round2():
-    Ross_rd2 = Dataset("Ross_Rd2", '/data')
-    Cornell_rd2.setInput('data/Ross_train_query.en',
+    ds = Dataset("Ross_Rd2", '/data')
+    ds.setInput('data/Ross_train_query.en',
         'train',
         type='text',
         id='source_text',
