@@ -1,6 +1,7 @@
 import sys
 sys.path.append('../nmt-keras')
 sys.path.append('../nmt-keras/nmt_keras')
+sys.path.append('../multimodal_keras_wrapper')
 
 from data_engine.prepare_data import keep_n_captions
 from keras_wrapper.dataset import Dataset, saveDataset
