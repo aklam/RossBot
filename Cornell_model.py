@@ -55,7 +55,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 1, 'batch_size': 200,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'n_parallel_loaders': 8, 'reload_epoch': 0}
+training_params = {'n_epochs': 1, 'batch_size': 40,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'n_parallel_loaders': 8, 'reload_epoch': 0}
 
 nmt_model.trainNet(ds, training_params)
 
