@@ -42,6 +42,7 @@ params['ATTENTION_SIZE'] = 512
 params['RELOAD'] = 1
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
+params['DATA_ROOT_PATH'] = 'query_to_reply/Dataset_Cornell_Rd2.pkl'
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
