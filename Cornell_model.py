@@ -7,7 +7,7 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 
-ds = loadDataset('query_to_reply/Dataset_Cornell.pkl')
+ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
@@ -23,8 +23,8 @@ params['TRG_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
 params['ENCODER_RNN_TYPE'] = 'GRU'
 params['DECODER_RNN_TYPE'] = 'GRU'
 
-#params['N_LAYERS_ENCODER'] = 2
-#params['N_LAYERS_DECODER'] = 2
+params['N_LAYERS_ENCODER'] = 2
+params['N_LAYERS_DECODER'] = 2
 params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
@@ -43,9 +43,9 @@ params['OUTPUTS_IDS_MODEL'] = ['round_1_target']
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-	model_name='Dec_27',
+	model_name='2LayerGRU',
 	vocabularies=ds.vocabulary,
-	store_path='trained_models/Dec_27/',
+	store_path='trained_models/2LayerGRU/',
 	verbose=True)
 
 inputMapping = dict()
