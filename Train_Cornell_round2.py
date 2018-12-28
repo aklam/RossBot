@@ -13,9 +13,11 @@ from model_zoo import TranslationModel
 
 Cornell_Rd2 = loadDataset('query_to_reply/Dataset_Cornell_Rd2.pkl')
 
+params = load_parameters()
+
 print("nice Try: " + Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]] + "--------------------")
 
-params = load_parameters()
+
 params['INPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 
