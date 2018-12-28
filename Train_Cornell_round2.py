@@ -58,9 +58,10 @@ nmt_model.setOutputsMapping(outputMapping)
 training_params = {'n_epochs': 1, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 0}
 
 nmt_model.trainNet(ds_round1, training_params)
-
-
 print("------- CORNELL FINISHED ROUND 1 -------")
+
+print(str(nmt_model))
+
 
 ds_round2 = loadDataset('query_to_reply/Dataset_Cornell_Rd2.pkl')
 
@@ -82,3 +83,6 @@ training_params_2 = {'n_epochs': 1, 'batch_size': 20,'maxlen': 30, 'epochs_for_s
 
 nmt_model.trainNet(ds_round2, training_params_2)
 
+print("------- CORNELL FINISHED ROUND 2 -------")
+
+print(str(nmt_model))
