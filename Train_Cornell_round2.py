@@ -14,12 +14,8 @@ from model_zoo import TranslationModel
 Cornell_Rd2 = loadDataset('query_to_reply/Dataset_Cornell_Rd2.pkl')
 
 params = load_parameters()
-
-print("nice Try: " + Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]] + "--------------------")
-
-
 params['INPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
@@ -55,21 +51,7 @@ nmt_model = TranslationModel(params,
 	store_path='trained_models/Dec_27_v1/',
 	verbose=True)
 
-inputMapping = dict()
-for i, id_in in enumerate(params['INPUTS_IDS_DATASET']):
-    pos_source = Cornell_Rd2.ids_inputs.index(id_in)
-    id_dest = nmt_model.ids_inputs[i]
-    inputMapping[id_dest] = pos_source
 
-nmt_model.setInputsMapping(inputMapping)
-outputMapping = dict()
-for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
-    pos_target = Cornell_Rd2.ids_outputs.index(id_out)
-    id_dest = nmt_model.ids_outputs[i]
-    outputMapping[id_dest] = pos_target
-nmt_model.setOutputsMapping(outputMapping)
+training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
-
-training_params = {'n_epochs': 10, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
-
-nmt_model.trainNet(Cornell_Rd2, training_params)
+model.trainNet(Cornell_Rd2, training_params)
