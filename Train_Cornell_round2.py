@@ -45,10 +45,10 @@ params['REBUILD_DATASET'] = False
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-    weights_path='~//RossBot/trained_models/Dec_27',
+    weights_path='~/RossBot/trained_models/Dec_27',
 	model_name='Dec_27',
 	vocabularies=Cornell_Rd2.vocabulary,
-	store_path='trained_models/Dec_27/',
+	store_path='trained_models/Dec_27_v1/',
 	verbose=True)
 
 
