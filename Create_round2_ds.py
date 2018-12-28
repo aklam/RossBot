@@ -153,8 +153,6 @@ def make_Ross_round2():
 
     keep_n_captions(ds, repeat=1, n=1, set_names=['val'])
 
-    ds.merge_vocabularies(['round_1_source','round_2_source'])
-
     saveDataset(ds, 'query_to_reply')
 
 make_Cornell_round2()
