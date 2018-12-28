@@ -13,11 +13,76 @@ from keras_wrapper.utils import decode_predictions_beam_search
 from model_zoo import TranslationModel
 
 def make_Cornell_round2():
-    ds = Dataset('Cornell_Rd2', '/data')
+    ds = Dataset('Cornell', '/data')
+
+    ds.setInput('data/Cornell_train_query.en',
+        'train',
+        type='text',
+        id='round_1_source',
+        pad_on_batch=True,
+        tokenization='tokenize_basic',
+        build_vocabulary=True,
+        fill='end',
+        max_text_len=30,
+        max_words=30000,
+        min_occ=0)
+    
+    ds.setInput('data/Cornell_valid_query.en',
+        'val',
+        type='text',
+        id='round_1_source',
+        pad_on_batch=True,
+        tokenization='tokenize_basic',
+        fill='end',
+        max_text_len=30,
+        max_words=0)
+    
+    ds.setInput('data/Cornell_train_reply.en',
+        'train',
+        type='text',
+        id='round_1_state_below',
+        required=False,
+        tokenization='tokenize_basic',
+        pad_on_batch=True,
+        build_vocabulary='target_text',
+        offset=1,
+        fill='end',
+        max_text_len=30,
+        max_words=30000)
+    
+    ds.setInput(None, 
+        'val',
+        type='ghost',
+        id='round_1_state_below',
+        pad_on_batch=True,
+        required=False)
+    
+    ds.setOutput('data/Cornell_train_reply.en',
+        'train',
+        type='text',
+        id='round_1_target',
+        tokenization='tokenize_basic',
+        build_vocabulary=True,
+        pad_on_batch=True,
+        sample_weights=True,
+        max_text_len=30,
+        max_words=30000,
+        min_occ=0)
+    
+    ds.setOutput('data/Cornell_valid_reply.en',
+        'val',
+        type='text',
+        id='round_1_target',
+        pad_on_batch=True,
+        tokenization='tokenize_basic',
+        sample_weights=True,
+        max_text_len=30,
+        max_words=0)
+
     ds.setInput('data/Cornell_train_2_query.en',
         'train',
         type='text',
-        id='source_text',
+        id='round_2_source',
         pad_on_batch=True,
         tokenization='tokenize_basic',
         build_vocabulary=True,
@@ -29,7 +94,7 @@ def make_Cornell_round2():
     ds.setInput('data/Cornell_valid_2_query.en',
         'val',
         type='text',
-        id='source_text',
+        id='round_2_source',
         pad_on_batch=True,
         tokenization='tokenize_basic',
         fill='end',
@@ -39,7 +104,7 @@ def make_Cornell_round2():
     ds.setInput('data/Cornell_train_2_reply.en',
         'train',
         type='text',
-        id='state_below',
+        id='round_2_state_below',
         required=False,
         tokenization='tokenize_basic',
         pad_on_batch=True,
@@ -52,14 +117,14 @@ def make_Cornell_round2():
     ds.setInput(None, 
         'val',
         type='ghost',
-        id='state_below',
+        id='round_2_state_below',
         pad_on_batch=True,
         required=False)
 
     ds.setOutput('data/Cornell_train_2_reply.en',
         'train',
         type='text',
-        id='target_text',
+        id='round_2_target',
         tokenization='tokenize_basic',
         build_vocabulary=True,
         pad_on_batch=True,
@@ -71,7 +136,7 @@ def make_Cornell_round2():
     ds.setOutput('data/Cornell_valid_2_reply.en',
         'val',
         type='text',
-        id='target_text',
+        id='round_2_target',
         pad_on_batch=True,
         tokenization='tokenize_basic',
         sample_weights=True,
@@ -80,15 +145,82 @@ def make_Cornell_round2():
 
     keep_n_captions(ds, repeat=1, n=1, set_names=['val'])
 
+    ds.merge_vocabularies(['round_1_source','round_2_source'])
+
     saveDataset(ds, 'query_to_reply')
 
 
 def make_Ross_round2():
-    ds = Dataset("Ross_Rd2", '/data')
+    ds = Dataset("Ross", '/data')
+
+    ds.setInput('data/Cornell_train_query.en',
+        'train',
+        type='text',
+        id='round_1_source',
+        pad_on_batch=True,
+        tokenization='tokenize_basic',
+        build_vocabulary=True,
+        fill='end',
+        max_text_len=30,
+        max_words=30000,
+        min_occ=0)
+    
+    ds.setInput('data/Cornell_valid_query.en',
+        'val',
+        type='text',
+        id='round_1_source',
+        pad_on_batch=True,
+        tokenization='tokenize_basic',
+        fill='end',
+        max_text_len=30,
+        max_words=0)
+    
+    ds.setInput('data/Cornell_train_reply.en',
+        'train',
+        type='text',
+        id='round_1_state_below',
+        required=False,
+        tokenization='tokenize_basic',
+        pad_on_batch=True,
+        build_vocabulary='target_text',
+        offset=1,
+        fill='end',
+        max_text_len=30,
+        max_words=30000)
+    
+    ds.setInput(None, 
+        'val',
+        type='ghost',
+        id='round_1_state_below',
+        pad_on_batch=True,
+        required=False)
+    
+    ds.setOutput('data/Cornell_train_reply.en',
+        'train',
+        type='text',
+        id='round_1_target',
+        tokenization='tokenize_basic',
+        build_vocabulary=True,
+        pad_on_batch=True,
+        sample_weights=True,
+        max_text_len=30,
+        max_words=30000,
+        min_occ=0)
+    
+    ds.setOutput('data/Cornell_valid_reply.en',
+        'val',
+        type='text',
+        id='round_1_target',
+        pad_on_batch=True,
+        tokenization='tokenize_basic',
+        sample_weights=True,
+        max_text_len=30,
+        max_words=0)
+
     ds.setInput('data/Ross_train_query.en',
         'train',
         type='text',
-        id='source_text',
+        id='round_2_source',
         pad_on_batch=True,
         tokenization='tokenize_basic',
         build_vocabulary=True,
@@ -100,7 +232,7 @@ def make_Ross_round2():
     ds.setInput('data/Ross_valid_query.en',
         'val',
         type='text',
-        id='source_text',
+        id='round_2_source',
         pad_on_batch=True,
         tokenization='tokenize_basic',
         fill='end',
@@ -110,7 +242,7 @@ def make_Ross_round2():
     ds.setInput('data/Ross_train_reply.en',
         'train',
         type='text',
-        id='state_below',
+        id='round_2_state_below',
         required=False,
         tokenization='tokenize_basic',
         pad_on_batch=True,
@@ -123,14 +255,14 @@ def make_Ross_round2():
     ds.setInput(None, 
         'val',
         type='ghost',
-        id='state_below',
+        id='round_2_state_below',
         pad_on_batch=True,
         required=False)
 
     ds.setOutput('data/Ross_train_reply.en',
         'train',
         type='text',
-        id='target_text',
+        id='round_2_target',
         tokenization='tokenize_basic',
         build_vocabulary=True,
         pad_on_batch=True,
@@ -142,7 +274,7 @@ def make_Ross_round2():
     ds.setOutput('data/Ross_valid_reply.en',
         'val',
         type='text',
-        id='target_text',
+        id='round_2_target',
         pad_on_batch=True,
         tokenization='tokenize_basic',
         sample_weights=True,
@@ -150,6 +282,8 @@ def make_Ross_round2():
         max_words=0)
 
     keep_n_captions(ds, repeat=1, n=1, set_names=['val'])
+
+    ds.merge_vocabularies(['round_1_source','round_2_source'])
 
     saveDataset(ds, 'query_to_reply')
 

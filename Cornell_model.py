@@ -7,7 +7,7 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 
-ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
+ds = loadDataset('query_to_reply/Dataset_Cornell.pkl')
 params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
@@ -34,11 +34,18 @@ params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
 
+
+params['INPUTS_IDS_DATASET'] = ['round_1_source', 'round_1_state_below']
+params['OUTPUTS_IDS_DATASET'] = ['round_1_target'] 
+parms['INPUTS_IDS_MODEL'] = ['round_1_source', 'round_1_state_below']
+params['OUTPUTS_IDS_MODEL'] = ['round_1_target']
+
+
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-	model_name='Dec_26',
+	model_name='Dec_27',
 	vocabularies=ds.vocabulary,
-	store_path='trained_models/Dec_26/',
+	store_path='trained_models/Dec_27/',
 	verbose=True)
 
 inputMapping = dict()
@@ -55,7 +62,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 0}
+training_params = {'n_epochs': 20, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 0}
 
 nmt_model.trainNet(ds, training_params)
 
