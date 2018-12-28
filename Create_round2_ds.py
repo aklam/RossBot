@@ -80,7 +80,7 @@ def make_Cornell_round2():
         max_words=0)
 
     ds.setInput('data/Cornell_train_2_query.en',
-        'train',
+        'train_2',
         type='text',
         id='round_2_source',
         pad_on_batch=True,
@@ -92,7 +92,7 @@ def make_Cornell_round2():
         min_occ=0)
 
     ds.setInput('data/Cornell_valid_2_query.en',
-        'val',
+        'val_2',
         type='text',
         id='round_2_source',
         pad_on_batch=True,
@@ -102,7 +102,7 @@ def make_Cornell_round2():
         max_words=0)
 
     ds.setInput('data/Cornell_train_2_reply.en',
-        'train',
+        'train_2',
         type='text',
         id='round_2_state_below',
         required=False,
@@ -115,14 +115,14 @@ def make_Cornell_round2():
         max_words=30000)
 
     ds.setInput(None, 
-        'val',
+        'val_2',
         type='ghost',
         id='round_2_state_below',
         pad_on_batch=True,
         required=False)
 
     ds.setOutput('data/Cornell_train_2_reply.en',
-        'train',
+        'train_2',
         type='text',
         id='round_2_target',
         tokenization='tokenize_basic',
@@ -134,7 +134,7 @@ def make_Cornell_round2():
         min_occ=0)
     
     ds.setOutput('data/Cornell_valid_2_reply.en',
-        'val',
+        'val_2',
         type='text',
         id='round_2_target',
         pad_on_batch=True,
@@ -218,7 +218,7 @@ def make_Ross_round2():
         max_words=0)
 
     ds.setInput('data/Ross_train_query.en',
-        'train',
+        'train_2',
         type='text',
         id='round_2_source',
         pad_on_batch=True,
@@ -230,7 +230,7 @@ def make_Ross_round2():
         min_occ=0)
 
     ds.setInput('data/Ross_valid_query.en',
-        'val',
+        'val_2',
         type='text',
         id='round_2_source',
         pad_on_batch=True,
@@ -240,7 +240,7 @@ def make_Ross_round2():
         max_words=0)
 
     ds.setInput('data/Ross_train_reply.en',
-        'train',
+        'train_2',
         type='text',
         id='round_2_state_below',
         required=False,
@@ -253,14 +253,14 @@ def make_Ross_round2():
         max_words=30000)
 
     ds.setInput(None, 
-        'val',
+        'val_2',
         type='ghost',
         id='round_2_state_below',
         pad_on_batch=True,
         required=False)
 
     ds.setOutput('data/Ross_train_reply.en',
-        'train',
+        'train_2',
         type='text',
         id='round_2_target',
         tokenization='tokenize_basic',
@@ -272,7 +272,7 @@ def make_Ross_round2():
         min_occ=0)
     
     ds.setOutput('data/Ross_valid_reply.en',
-        'val',
+        'val_2',
         type='text',
         id='round_2_target',
         pad_on_batch=True,
