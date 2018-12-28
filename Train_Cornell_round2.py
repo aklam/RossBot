@@ -43,15 +43,17 @@ params['RELOAD'] = 1
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 
+ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
+
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
     weights_path='trained_models/Dec_27/epoch_1_init.h5',
 	model_name='Dec_27',
-	vocabularies=Cornell_Rd2.vocabulary,
+	vocabularies=ds.vocabulary,
 	store_path='trained_models/Dec_27_v1/',
 	verbose=True)
 
 
-training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
+training_params = {'n_epochs': 10, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
 nmt_model.trainNet(Cornell_Rd2, training_params)
