@@ -34,13 +34,6 @@ params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
 
-
-params['INPUTS_IDS_DATASET'] = ['round_1_source', 'round_1_state_below']
-params['OUTPUTS_IDS_DATASET'] = ['round_1_target'] 
-parms['INPUTS_IDS_MODEL'] = ['round_1_source', 'round_1_state_below']
-params['OUTPUTS_IDS_MODEL'] = ['round_1_target']
-
-
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
 	model_name='2LayerGRU',
