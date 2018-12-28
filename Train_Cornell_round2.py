@@ -11,7 +11,7 @@ from keras_wrapper.utils import decode_predictions_beam_search
 from model_zoo import TranslationModel
 
 
-Cornell_Rd2 = loadDataset('query_to_reply/Dataset_Cornell_Rd2.pkl')
+Cornell_Rd2 = loadDataset('query_to_reply/Dataset_Cornell.pkl')
 
 params = load_parameters()
 params['INPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
@@ -42,7 +42,7 @@ params['ATTENTION_SIZE'] = 512
 params['RELOAD'] = 1
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
-params['DATA_ROOT_PATH'] = 'query_to_reply/Dataset_Cornell_Rd2.pkl'
+params['DATA_ROOT_PATH'] = 'query_to_reply/Dataset_Cornell.pkl'
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
