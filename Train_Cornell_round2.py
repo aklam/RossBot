@@ -49,7 +49,7 @@ nmt_model = TranslationModel(params,
 	model_type='GroundHogModel',
     weights_path='trained_models/Dec_27/epoch_1_init.h5',
 	model_name='Dec_27',
-	vocabularies=ds.vocabulary,
+	vocabularies=Cornell_Rd2.vocabulary,
 	store_path='trained_models/Dec_27_v1/',
 	verbose=True)
 
