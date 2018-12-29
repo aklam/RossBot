@@ -62,4 +62,4 @@ nmt_model = TranslationModel(params,
 
 training_params = {'n_epochs': 1, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
-model.trainNet(ds, training_params)
+nmt_model.trainNet(ds, training_params)
