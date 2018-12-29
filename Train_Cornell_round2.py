@@ -4,7 +4,7 @@ sys.path.append('../nmt-keras/nmt_keras')
 
 import utils 
 from config import load_parameters
-from data_engine.prepare_data import keep_n_captions
+from data_engine.prepare_data import keep_n_captions, update_dataset_from_file
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 from keras_wrapper.utils import decode_predictions_beam_search
@@ -16,13 +16,9 @@ ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 
 params = load_parameters()
 
-
 # For the model params, INPUT_VOCABULARY_SIZE and OUTPUT_VOCABULARY_SIZE should I set that equal to the size of the new or the old dataset?
 
 # Should the vocabularies argument in TranslationModel be set to the new dataset vocabulary or the old dataset vocabulary?
-
-params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
