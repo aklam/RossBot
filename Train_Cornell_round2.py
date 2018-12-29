@@ -16,6 +16,11 @@ ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 
 params = load_parameters()
 
+
+# For the model params, INPUT_VOCABULARY_SIZE and OUTPUT_VOCABULARY_SIZE should I set that equal to the size of the new or the old dataset?
+
+# Should the vocabularies argument in TranslationModel be set to the new dataset vocabulary or the old dataset vocabulary?
+
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
