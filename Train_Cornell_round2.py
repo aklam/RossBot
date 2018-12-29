@@ -11,11 +11,10 @@ from keras_wrapper.utils import decode_predictions_beam_search
 from model_zoo import TranslationModel
 
 
-
+#Dataset_Cornell_base is the large dataset as a keras_wrapper.dataset Dataset instance
 ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 
 params = load_parameters()
-
 
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
@@ -47,6 +46,7 @@ params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
 
+# This is the new data that I want to train on. Do I need to make a new keras_wrapper.dataset Dataset instance?
 params['SRC_LAN'] = 'query'
 params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
