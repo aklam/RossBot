@@ -54,8 +54,7 @@ params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
 #tried to have after updated dataset, -> index out of bounds
-params['INPUT_VOCABULARY_SIZE'] = 0
-params['OUTPUT_VOCABULARY_SIZE'] = 0
+
 
 ds_2 = update_dataset_from_file(ds=ds, 
 	input_text_filename='data/Cornell_train_2.query',
@@ -64,6 +63,9 @@ ds_2 = update_dataset_from_file(ds=ds,
 	output_text_filename='data/Cornell_train_2.reply',
 	compute_state_below=False,
 	recompute_references=False)
+
+params['INPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
@@ -89,4 +91,4 @@ nmt_model.setOutputsMapping(outputMapping)
 
 training_params = {'n_epochs': 3, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
-nmt_model.trainNet(ds_2, training_params)
+nmt_model.trainNet(ds, training_params)
