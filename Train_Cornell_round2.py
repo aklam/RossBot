@@ -51,10 +51,11 @@ params['DATA_ROOT_PATH'] = 'data/'
 params['SRC_LAN'] = 'query'
 params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
+params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
 #tried to have after updated dataset, -> index out of bounds
-params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
+params['INPUT_VOCABULARY_SIZE'] = 0
+params['OUTPUT_VOCABULARY_SIZE'] = 0
 
 ds = update_dataset_from_file(ds=ds, 
 	input_text_filename='data/Cornell_train_2.query',
