@@ -12,7 +12,9 @@ from model_zoo import TranslationModel
 
 
 
-ds = loadDataset('query_to_reply/Dataset_Cornell.pkl')
+ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 params = load_parameters()
 
@@ -51,6 +53,7 @@ nmt_model = TranslationModel(params,
 	model_type='GroundHogModel',
     weights_path='trained_models/Dec_27/epoch_1_init.h5',
 	model_name='Dec_27',
+	vocabularies=ds.vocabulary,
 	store_path='trained_models/Dec_27_v1/',
 	verbose=True)
 
