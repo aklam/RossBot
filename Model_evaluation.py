@@ -34,7 +34,7 @@ dataset.setInput(None,
 params['INPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-model = loadModel('trained_models/2LayerGRU', 20)
+model = loadModel('trained_models/2LayerGRU_100/', 24)
 
 params_prediction = {'max_batch_size': 50, 'predict_on_sets': ['test'], 'beam_size': 12, 'maxlen': 50, 'model_inputs': ['source_text', 'state_below'], 'model_outputs': ['target_text'], 'dataset_inputs': ['source_text', 'state_below'], 'dataset_outputs': ['target_text'], 'normalize': True, 'alpha_factor': 0.6 }
 
@@ -48,7 +48,7 @@ predictions = decode_predictions_beam_search(predictions, vocab, verbose=params[
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-f_path = model.model_path+'/test_sampling.pred'
+f_path = '~/RossBot/2LayerGRU_24Epoch.pred'
 list2file(f_path, predictions)
 
 
