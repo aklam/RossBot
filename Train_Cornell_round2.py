@@ -20,6 +20,9 @@ params = load_parameters()
 
 # Should the vocabularies argument in TranslationModel be set to the new dataset vocabulary or the old dataset vocabulary?
 
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
+
 params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
 
