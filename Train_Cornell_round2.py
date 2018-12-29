@@ -14,8 +14,6 @@ from model_zoo import TranslationModel
 Cornell_Rd2 = loadDataset('query_to_reply/Dataset_Cornell.pkl')
 
 params = load_parameters()
-params['INPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = Cornell_Rd2.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
@@ -41,8 +39,12 @@ params['ATTENTION_SIZE'] = 512
 
 params['RELOAD'] = 1
 params['RELOAD_EPOCH'] = True
-params['REBUILD_DATASET'] = True
-params['DATA_ROOT_PATH'] = 'query_to_reply/Dataset_Cornell.pkl'
+params['REBUILD_DATASET'] = False
+params['DATA_ROOT_PATH'] = 'data/'
+
+params['SRC_LAN'] = 'query'
+params['TRG_LAN'] = 'reply'
+params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
