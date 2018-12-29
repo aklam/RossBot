@@ -54,8 +54,8 @@ params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
 #tried to have after updated dataset, -> index out of bounds
-params['INPUT_VOCABULARY_SIZE'] = 0
-params['OUTPUT_VOCABULARY_SIZE'] = 0
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 ds = update_dataset_from_file(ds=ds, 
 	input_text_filename='data/Cornell_train_2.query',
@@ -73,6 +73,19 @@ nmt_model = TranslationModel(params,
 	store_path='trained_models/Dec_27_v1/',
 	verbose=True)
 
+inputMapping = dict()
+for i, id_in in enumerate(params['INPUTS_IDS_DATASET']):
+    pos_source = ds.ids_inputs.index(id_in)
+    id_dest = nmt_model.ids_inputs[i]
+    inputMapping[id_dest] = pos_source
+
+nmt_model.setInputsMapping(inputMapping)
+outputMapping = dict()
+for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
+    pos_target = ds.ids_outputs.index(id_out)
+    id_dest = nmt_model.ids_outputs[i]
+    outputMapping[id_dest] = pos_target
+nmt_model.setOutputsMapping(outputMapping)
 
 training_params = {'n_epochs': 3, 'batch_size': 80,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
