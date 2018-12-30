@@ -116,7 +116,7 @@ nmt_model = TranslationModel(params,
     model_type='GroundHogModel',
     weights_path='trained_models/Vanilla_model_resume_test/epoch_1_init.h5',
     model_name='Vanilla_model_resumed',
-    vocabularies=ds.vocabulary,
+    vocabularies=30000,#ds.vocabulary,
     store_path='trained_models/Vanilla_model_resumed/',
     verbose=True)
 
