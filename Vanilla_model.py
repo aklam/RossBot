@@ -7,8 +7,14 @@ import utils
 from keras_wrapper.cnn_model import loadModel
 from keras_wrapper.dataset import loadDataset
 
-ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 params = load_parameters()
+params['SRC_LAN'] = 'query'
+params['TRG_LAN'] = 'reply'
+params['TEXT_FILES'] = {'train': 'Cornell_train.', 'val': 'Cornell_valid.'}
+params['TOKENIZATION_METHOD'] = 'tokenize_basic'
+
+ds = build_dataset(params)
+
 #params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 #params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
