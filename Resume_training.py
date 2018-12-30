@@ -56,39 +56,75 @@ params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET']
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 
-ds_2 = update_dataset_from_file(ds=ds, 
-    input_text_filename='data/Cornell_train_2.query',
-    params=params,
-    splits=['train'],
-    output_text_filename='data/Cornell_train_2.reply',
-    compute_state_below=True,
-    recompute_references=False)
+#ds_2 = update_dataset_from_file(ds=ds, 
+#    input_text_filename='data/Cornell_train_2.query',
+#    params=params,
+#    splits=['train'],
+#    output_text_filename='data/Cornell_train_2.reply',
+#    compute_state_below=True,
+#    recompute_references=False)
 
+ds.setInput('data/Cornell_train_2.query',
+    'train',
+    type='text',
+    id='source_text',
+    tokenization='tokenize_basic',
+    build_vocabulary=False,
+    pad_on_batch=True,
+    fill='end',
+    max_text_len=30,
+    max_words=30000,
+    min_occ=0)
+
+ds.setInput('data/Cornell_train_2.reply',
+    'train',
+    type='text',
+    id='state_below',
+    required=False,
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    build_vocabulary='target_text',
+    offset=1,
+    fill='end',
+    max_text_len=30,
+    max_words=30000)
+
+ds.setOutput('data/Cornell_train_2.reply',
+    'train',
+    type='text',
+    id='target_text',
+    tokenization='tokenize_basic',
+    build_vocabulary=True,
+    pad_on_batch=True,
+    sample_weights=True,
+    max_text_len=30,
+    max_words=30000,
+    min_occ=0)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
     weights_path='trained_models/Vanilla_model_resume_test/epoch_1_init.h5',
     model_name='Vanilla_model_resumed',
-    vocabularies=ds_2.vocabulary,
+    vocabularies=ds.vocabulary,
     store_path='trained_models/Vanilla_model_resumed/',
     verbose=True)
 
 inputMapping = dict()
 for i, id_in in enumerate(params['INPUTS_IDS_DATASET']):
-    pos_source = ds_2.ids_inputs.index(id_in)
+    pos_source = ds.ids_inputs.index(id_in)
     id_dest = nmt_model.ids_inputs[i]
     inputMapping[id_dest] = pos_source
 
 nmt_model.setInputsMapping(inputMapping)
 outputMapping = dict()
 for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
-    pos_target = ds_2.ids_outputs.index(id_out)
+    pos_target = ds.ids_outputs.index(id_out)
     id_dest = nmt_model.ids_outputs[i]
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
 training_params = {'n_epochs': 3, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
 
-print(ds_2)
+print(ds)
 
-nmt_model.trainNet(ds_2, training_params)
+nmt_model.trainNet(ds, training_params)
