@@ -68,7 +68,6 @@ OUTPUTS_IDS_DATASET = ['target_text_2']
 
 ds.removeInput('train', 'source_text')
 ds.removeInput('train', 'state_below')
-ds.removeOutput('train', 'target_text')
 
 ds.setInput('data/Cornell_train_2.query',
     'train',
