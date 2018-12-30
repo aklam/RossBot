@@ -105,10 +105,10 @@ ds.setOutput('data/Cornell_train_2.reply',
     max_text_len=30,
     min_occ=0)
 
-ds.merge_vocabularies(['source_text_2', 'source_text'])
+#ds.merge_vocabularies(['source_text_2', 'source_text'])
 
-params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
+params['INPUT_VOCABULARY_SIZE'] = 30000#ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = 30000#ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 print(ds)
 
