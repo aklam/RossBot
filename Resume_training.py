@@ -56,13 +56,14 @@ params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 ds_2 = update_dataset_from_file(ds=ds, 
     input_text_filename='data/Cornell_train_2.query',
     params=params,
+    splits=['train']
     output_text_filename='data/Cornell_train_2.reply',
     compute_state_below=True,
     recompute_references=False)
 
 
-params['INPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
+#params['INPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+#params['OUTPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
