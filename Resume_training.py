@@ -53,12 +53,6 @@ params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
-params['INPUTS_IDS_DATASET'] = ['source_text_2', 'state_below_2']
-params['OUTPUTS_IDS_DATASET'] = ['target_text_2']
-
-params['INPUTS_IDS_MODEL'] =  ['source_text_2', 'state_below_2']
-params['OUTPUTS_IDS_MODEL'] =  ['target_text_2']
-
 #ds_2 = update_dataset_from_file(ds=ds, 
 #    input_text_filename='data/Cornell_train_2.query',
 #    params=params,
@@ -67,48 +61,45 @@ params['OUTPUTS_IDS_MODEL'] =  ['target_text_2']
 #    compute_state_below=True,
 #    recompute_references=False)
 
-ds.removeInput('train', 'source_text')
-ds.removeInput('train', 'state_below')
-ds.removeOutput('train', 'target_text')
-
 ds.setInput('data/Cornell_train_2.query',
     'train',
     type='text',
-    id='source_text_2',
+    id='source_text',
     tokenization='tokenize_basic',
     build_vocabulary=True,
     pad_on_batch=True,
     fill='end',
     max_text_len=30,
-    min_occ=0)
+    min_occ=0,
+    overwrite_split=True)
 
 ds.setInput('data/Cornell_train_2.reply',
     'train',
     type='text',
-    id='state_below_2',
+    id='state_below',
     required=False,
     tokenization='tokenize_basic',
     pad_on_batch=True,
     build_vocabulary='target_text_2',
     offset=1,
     fill='end',
-    max_text_len=30)
+    max_text_len=30,
+    overwrite_split=True)
 
 ds.setOutput('data/Cornell_train_2.reply',
     'train',
     type='text',
-    id='target_text_2',
+    id='target_text',
     tokenization='tokenize_basic',
     build_vocabulary=True,
     pad_on_batch=True,
     sample_weights=True,
     max_text_len=30,
-    min_occ=0)
+    min_occ=0,
+    overwrite_split=True)
 
-#ds.merge_vocabularies(['source_text_2', 'source_text'])
-
-params['INPUT_VOCABULARY_SIZE'] = 30000#ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = 30000#ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 print(ds)
 
@@ -116,7 +107,7 @@ nmt_model = TranslationModel(params,
     model_type='GroundHogModel',
     weights_path='trained_models/Vanilla_model_resume_test/epoch_1_init.h5',
     model_name='Vanilla_model_resumed',
-    vocabularies=30000,#ds.vocabulary,
+    vocabularies=ds.vocabulary,
     store_path='trained_models/Vanilla_model_resumed/',
     verbose=True)
 
