@@ -111,6 +111,8 @@ ds.setOutput('data/Cornell_train_2.reply',
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
+print(ds)
+
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
     weights_path='trained_models/Vanilla_model_resume_test/epoch_1_init.h5',
