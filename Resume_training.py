@@ -67,9 +67,9 @@ params['OUTPUTS_IDS_MODEL'] =  ['target_text_2']
 #    compute_state_below=True,
 #    recompute_references=False)
 
-ds.removeInput('train', 'source_text')
-ds.removeInput('train', 'state_below')
-ds.removeOutput('train', 'target_text')
+#ds.removeInput('train', 'source_text')
+#ds.removeInput('train', 'state_below')
+#ds.removeOutput('train', 'target_text')
 
 ds.setInput('data/Cornell_train_2.query',
     'train',
@@ -107,6 +107,8 @@ ds.setOutput('data/Cornell_train_2.reply',
     max_text_len=30,
     max_words=30000,
     min_occ=0)
+
+ds.merge_vocabularies(['source_text_2', 'source_text'])
 
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
