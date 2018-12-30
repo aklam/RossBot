@@ -55,6 +55,8 @@ params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
+params['INPUTS_IDS_DATASET'] = ['source_text_2', 'state_below_2']
+OUTPUTS_IDS_DATASET = ['target_text_2']
 
 #ds_2 = update_dataset_from_file(ds=ds, 
 #    input_text_filename='data/Cornell_train_2.query',
@@ -67,7 +69,7 @@ params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET
 ds.setInput('data/Cornell_train_2.query',
     'train',
     type='text',
-    id='source_text',
+    id='source_text_2',
     tokenization='tokenize_basic',
     build_vocabulary=False,
     pad_on_batch=True,
@@ -79,7 +81,7 @@ ds.setInput('data/Cornell_train_2.query',
 ds.setInput('data/Cornell_train_2.reply',
     'train',
     type='text',
-    id='state_below',
+    id='state_below_2',
     required=False,
     tokenization='tokenize_basic',
     pad_on_batch=True,
@@ -92,7 +94,7 @@ ds.setInput('data/Cornell_train_2.reply',
 ds.setOutput('data/Cornell_train_2.reply',
     'train',
     type='text',
-    id='target_text',
+    id='target_text_2',
     tokenization='tokenize_basic',
     build_vocabulary=True,
     pad_on_batch=True,
