@@ -56,7 +56,7 @@ params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET']
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 params['INPUTS_IDS_DATASET'] = ['source_text_2', 'state_below_2']
-OUTPUTS_IDS_DATASET = ['target_text_2']
+params['OUTPUTS_IDS_DATASET'] = ['target_text_2']
 
 #ds_2 = update_dataset_from_file(ds=ds, 
 #    input_text_filename='data/Cornell_train_2.query',
@@ -68,6 +68,7 @@ OUTPUTS_IDS_DATASET = ['target_text_2']
 
 ds.removeInput('train', 'source_text')
 ds.removeInput('train', 'state_below')
+ds.removeOutput('train', 'target_text')
 
 ds.setInput('data/Cornell_train_2.query',
     'train',
