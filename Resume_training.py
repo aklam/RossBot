@@ -66,6 +66,10 @@ OUTPUTS_IDS_DATASET = ['target_text_2']
 #    compute_state_below=True,
 #    recompute_references=False)
 
+ds.removeInput('train', 'source_text')
+ds.removeInput('train', 'state_below')
+ds.removeOutput('train', 'target_text')
+
 ds.setInput('data/Cornell_train_2.query',
     'train',
     type='text',
