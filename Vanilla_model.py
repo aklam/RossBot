@@ -5,7 +5,7 @@ from config import load_parameters
 from model_zoo import TranslationModel
 import utils 
 from keras_wrapper.cnn_model import loadModel
-from data_engine.prepare_data import keep_n_captions, update_dataset_from_file
+from data_engine.prepare_data import build_dataset, update_dataset_from_file
 
 
 params = load_parameters()
