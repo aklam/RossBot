@@ -5,22 +5,12 @@ from config import load_parameters
 from model_zoo import TranslationModel
 import utils 
 from keras_wrapper.cnn_model import loadModel
-from data_engine.prepare_data import build_dataset, update_dataset_from_file
+from keras_wrapper.dataset import loadDataset
 
-
+ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 params = load_parameters()
-params['DATA_ROOT_PATH'] = 'data/'
-params['SRC_LAN'] = 'query'
-params['TRG_LAN'] = 'reply'
-params['TEXT_FILES'] = {'train': 'Cornell_train.', 'val': 'Cornell_valid.'}
-params['TOKENIZATION_METHOD'] = 'tokenize_basic'
-
-ds = build_dataset(params)
-
-print(ds)
-
-#params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-#params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
