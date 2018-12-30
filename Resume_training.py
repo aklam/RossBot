@@ -52,8 +52,6 @@ params['SRC_LAN'] = 'query'
 params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
-params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
-params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 params['INPUTS_IDS_DATASET'] = ['source_text_2', 'state_below_2']
 params['OUTPUTS_IDS_DATASET'] = ['target_text_2']
@@ -106,6 +104,9 @@ ds.setOutput('data/Cornell_train_2.reply',
     max_text_len=30,
     max_words=30000,
     min_occ=0)
+
+params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
+params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
