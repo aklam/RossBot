@@ -69,10 +69,10 @@ params['OUTPUT_VOCABULARY_SIZE'] = ds_2.vocabulary_len[params['OUTPUTS_IDS_DATAS
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/2LayerGRU/epoch_12_init.h5',
-    model_name='Dec_30_test',
+    weights_path='trained_models/Vanilla_model_resume_test/epoch_1_init.h5',
+    model_name='Vanilla_model_resumed',
     vocabularies=ds_2.vocabulary,
-    store_path='trained_models/Dec_30_test/',
+    store_path='trained_models/Vanilla_model_resumed/',
     verbose=True)
 
 inputMapping = dict()
