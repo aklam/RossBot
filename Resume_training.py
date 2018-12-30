@@ -56,6 +56,9 @@ params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 params['INPUTS_IDS_DATASET'] = ['source_text_2', 'state_below_2']
 params['OUTPUTS_IDS_DATASET'] = ['target_text_2']
 
+INPUTS_IDS_MODEL: ['source_text_2', 'state_below_2']
+OUTPUTS_IDS_MODEL: ['target_text_2']
+
 #ds_2 = update_dataset_from_file(ds=ds, 
 #    input_text_filename='data/Cornell_train_2.query',
 #    params=params,
