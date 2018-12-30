@@ -9,6 +9,7 @@ from data_engine.prepare_data import build_dataset, update_dataset_from_file
 
 
 params = load_parameters()
+params['DATA_ROOT_PATH'] = 'data/'
 params['SRC_LAN'] = 'query'
 params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train.', 'val': 'Cornell_valid.'}
