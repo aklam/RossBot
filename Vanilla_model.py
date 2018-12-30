@@ -17,6 +17,8 @@ params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
 ds = build_dataset(params)
 
+print(ds)
+
 #params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 #params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
