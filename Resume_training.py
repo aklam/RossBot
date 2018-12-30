@@ -80,7 +80,6 @@ ds.setInput('data/Cornell_train_2.query',
     pad_on_batch=True,
     fill='end',
     max_text_len=30,
-    max_words=30000,
     min_occ=0)
 
 ds.setInput('data/Cornell_train_2.reply',
@@ -93,8 +92,7 @@ ds.setInput('data/Cornell_train_2.reply',
     build_vocabulary='target_text_2',
     offset=1,
     fill='end',
-    max_text_len=30,
-    max_words=30000)
+    max_text_len=30)
 
 ds.setOutput('data/Cornell_train_2.reply',
     'train',
@@ -105,7 +103,6 @@ ds.setOutput('data/Cornell_train_2.reply',
     pad_on_batch=True,
     sample_weights=True,
     max_text_len=30,
-    max_words=30000,
     min_occ=0)
 
 ds.merge_vocabularies(['source_text_2', 'source_text'])
