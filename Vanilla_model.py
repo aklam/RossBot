@@ -5,7 +5,8 @@ from config import load_parameters
 from model_zoo import TranslationModel
 import utils 
 from keras_wrapper.cnn_model import loadModel
-from keras_wrapper.dataset import loadDataset
+from data_engine.prepare_data import keep_n_captions, update_dataset_from_file
+
 
 params = load_parameters()
 params['SRC_LAN'] = 'query'
