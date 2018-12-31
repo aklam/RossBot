@@ -49,7 +49,7 @@ params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
-ds.setInput('data/Cornell_train_2.query',
+ds.setInput('data/Ross_train.query',
     'train',
     type='text',
     id='source_text',
@@ -60,7 +60,7 @@ ds.setInput('data/Cornell_train_2.query',
     min_occ=0,
     overwrite_split=True)
 
-ds.setInput('data/Cornell_train_2.reply',
+ds.setInput('data/Ross_train.reply',
     'train',
     type='text',
     id='state_below',
@@ -72,7 +72,7 @@ ds.setInput('data/Cornell_train_2.reply',
     max_text_len=30,
     overwrite_split=True)
 
-ds.setOutput('data/Cornell_train_2.reply',
+ds.setOutput('data/Ross_train.reply',
     'train',
     type='text',
     id='target_text',
@@ -83,7 +83,7 @@ ds.setOutput('data/Cornell_train_2.reply',
     min_occ=0,
     overwrite_split=True)
 
-ds.setInput('data/Cornell_valid_2.query',
+ds.setInput('data/Ross_valid.query',
     'val',
     type='text',
     id='source_text',
@@ -94,7 +94,7 @@ ds.setInput('data/Cornell_valid_2.query',
     min_occ=0,
     overwrite_split=True)
 
-ds.setOutput('data/Cornell_valid_2.reply',
+ds.setOutput('data/Ross_valid.reply',
     'val',
     type='text',
     id='target_text',
@@ -113,9 +113,9 @@ print(ds)
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
     weights_path='trained_models/2LayerGRU_100/epoch_24_init.h5',
-    model_name='2LayerGRU_resume_test',
+    model_name='2LayerGRU_Ross',
     vocabularies=ds.vocabulary,
-    store_path='trained_models/2LayerGRU_resume_test/',
+    store_path='trained_models/2LayerGRU_Ross/',
     verbose=True)
 
 inputMapping = dict()
@@ -132,7 +132,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 26, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 24, 'epoch_offset': 24}
+training_params = {'n_epochs': 34, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 24, 'epoch_offset': 24}
 
 print(ds)
 

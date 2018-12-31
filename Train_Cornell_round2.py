@@ -16,10 +16,6 @@ ds = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 
 params = load_parameters()
 
-# For the model params, INPUT_VOCABULARY_SIZE and OUTPUT_VOCABULARY_SIZE should I set that equal to the size of the new or the old dataset?
-
-# Should the vocabularies argument in TranslationModel be set to the new dataset vocabulary or the old dataset vocabulary?
-
 params['SOURCE_TEXT_EMBEDDING_SIZE'] = 300
 params['TARGET_TEXT_EMBEDDING_SIZE'] = 300
 
@@ -31,8 +27,8 @@ params['TRG_PRETRAINED_VECTORS'] = '../Google_w2v.npy'
 params['ENCODER_RNN_TYPE'] = 'GRU'
 params['DECODER_RNN_TYPE'] = 'GRU'
 
-#params['N_LAYERS_ENCODER'] = 2
-#params['N_LAYERS_DECODER'] = 2
+params['N_LAYERS_ENCODER'] = 2
+params['N_LAYERS_DECODER'] = 2
 params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
@@ -42,7 +38,7 @@ params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
 
-params['RELOAD'] = 1
+params['RELOAD'] = 24
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
@@ -53,27 +49,74 @@ params['TRG_LAN'] = 'reply'
 params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
-#tried to have after updated dataset, -> index out of bounds
+ds.setInput('data/Cornell_train_2.query',
+    'train',
+    type='text',
+    id='source_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    fill='end',
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
 
+ds.setInput('data/Cornell_train_2.reply',
+    'train',
+    type='text',
+    id='state_below',
+    required=False,
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    offset=1,
+    fill='end',
+    max_text_len=30,
+    overwrite_split=True)
 
-update_dataset_from_file(ds=ds, 
-	input_text_filename='data/Cornell_train_2.query',
-	params=params,
-	splits=['train','val'],
-	output_text_filename='data/Cornell_train_2.reply',
-	compute_state_below=False,
-	recompute_references=False)
+ds.setOutput('data/Cornell_train_2.reply',
+    'train',
+    type='text',
+    id='target_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    sample_weights=True,
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
+
+ds.setInput('data/Cornell_valid_2.query',
+    'val',
+    type='text',
+    id='source_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    fill='end',
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
+
+ds.setOutput('data/Cornell_valid_2.reply',
+    'val',
+    type='text',
+    id='target_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    sample_weights=True,
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
 
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
+print(ds)
+
 nmt_model = TranslationModel(params, 
-	model_type='GroundHogModel',
-    weights_path='trained_models/Dec_27/epoch_1_init.h5',
-	model_name='Dec_27',
-	vocabularies=ds.vocabulary,
-	store_path='trained_models/Dec_27_v1/',
-	verbose=True)
+    model_type='GroundHogModel',
+    weights_path='trained_models/2LayerGRU_100/epoch_24_init.h5',
+    model_name='2LayerGRU_Cornell2',
+    vocabularies=ds.vocabulary,
+    store_path='trained_models/2LayerGRU_Cornell2/',
+    verbose=True)
 
 inputMapping = dict()
 for i, id_in in enumerate(params['INPUTS_IDS_DATASET']):
@@ -89,6 +132,8 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 3, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 1, 'epoch_offset': 1}
+training_params = {'n_epochs': 34, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 24, 'epoch_offset': 24}
+
+print(ds)
 
 nmt_model.trainNet(ds, training_params)
