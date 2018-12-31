@@ -93,7 +93,7 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Vanilla_model_resume_test/epoch_24_init.h5',
+    weights_path='trained_models/2LayerGRU_100/epoch_24_init.h5',
     model_name='2LayerGRU_resume_test',
     vocabularies=ds.vocabulary,
     store_path='trained_models/2LayerGRU_resume_test/',
