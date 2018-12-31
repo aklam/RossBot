@@ -13,7 +13,7 @@ from model_zoo import TranslationModel
 params = load_parameters()
 dataset = loadDataset('query_to_reply/Dataset_Cornell_base.pkl')
 
-dataset.setInput('data/Cornell_test_query.en',
+dataset.setInput('data/Ross_test.query',
 	'test', 
 	type='text',
 	id='source_text',
@@ -34,13 +34,18 @@ dataset.setInput(None,
 params['INPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-model = loadModel('trained_models/2LayerGRU_100/', 24)
+Cornell_model = loadModel('trained_models/2LayerGRU_Cornell2/', 34)
+Ross_model = loadMode('trained_models/2LayerGRU_Ross/', 34)
 
 params_prediction = {'max_batch_size': 50, 'predict_on_sets': ['test'], 'beam_size': 12, 'maxlen': 50, 'model_inputs': ['source_text', 'state_below'], 'model_outputs': ['target_text'], 'dataset_inputs': ['source_text', 'state_below'], 'dataset_outputs': ['target_text'], 'normalize': True, 'alpha_factor': 0.6 }
 
-predictions = model.predictBeamSearchNet(dataset, params_prediction)['test']
+Cornell_predictions = Cornell_model.predictBeamSearchNet(dataset, params_prediction)['test']
+Ross_predictions = Ross_model.predictBeamSearchNet(dataset, params_prediction)['test']
+
+
 vocab = dataset.vocabulary['target_text']['idx2words']
-predictions = decode_predictions_beam_search(predictions, vocab, verbose=params['VERBOSE'])
+Cornell_predictions = decode_predictions_beam_search(Cornell_predictions, vocab, verbose=params['VERBOSE'])
+Ross_predictions = decode_predictions_beam_search(Ross_predictions, vocab, verbose=params['VERBOSE'])
 
 
 ## see how they compare to ground truth
@@ -48,11 +53,13 @@ predictions = decode_predictions_beam_search(predictions, vocab, verbose=params[
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-f_path = '~/RossBot/2LayerGRU_24Epoch.pred'
-list2file(f_path, predictions)
+Cornell_path = '~/RossBot/Cornell_Rnd2.pred'
+Ross_path = '~/RossBot/Ross_Rnd2.pred'
+list2file(Cornell_path, Cornell_predictions)
+list2file(Ross_path, Ross_predictions)
 
 
-dataset.setOutput('data/Cornell_test_reply.en', 
+dataset.setOutput('data/Ross_test.reply', 
 	'test', 
 	type='text', 
 	id='target_text', 
@@ -73,6 +80,13 @@ extra_vars['tokenize_f'] = eval('dataset.' + 'tokenize_basic')
 extra_vars['language'] = params['TRG_LAN']
 extra_vars['test'] = dict()
 extra_vars['test']['references'] = dataset.extra_variables['test']['target_text']
-metrics = evaluation.select[metric](pred_list=predictions, verbose=1, extra_vars=extra_vars, split='test')
+Cornell_metrics = evaluation.select[metric](pred_list=Cornell_predictions, verbose=1, extra_vars=extra_vars, split='test')
 
-print(metrics)
+Ross_metrics = evaluation.select[metric](pred_list=Ross_predictions, verbose=1, extra_vars=extra_vars, split='test')
+
+
+print("Cornell:")
+print(Cornell_metrics)
+print("Ross:")
+print(Ross_metrics)
+
