@@ -53,8 +53,8 @@ Ross_predictions = decode_predictions_beam_search(Ross_predictions, vocab, verbo
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-Cornell_path = '~/RossBot/Cornell_Rnd2.pred'
-Ross_path = '~/RossBot/Ross_Rnd2.pred'
+Cornell_path = '~/Cornell_Rnd2.pred'
+Ross_path = '~/Ross_Rnd2.pred'
 list2file(Cornell_path, Cornell_predictions)
 list2file(Ross_path, Ross_predictions)
 
