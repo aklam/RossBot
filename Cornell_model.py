@@ -28,17 +28,17 @@ params['N_LAYERS_DECODER'] = 2
 params['ENCODER_HIDDEN_SIZE'] = 512
 params['DECODER_HIDDEN_SIZE'] = 512
 params['MODEL_SIZE'] = 512
-#params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = False
-#params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False 
+params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = False
+params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False 
 
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
 
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-	model_name='Full_model_trainable_w2v',
+	model_name='Full_model',
 	vocabularies=ds.vocabulary,
-	store_path='trained_models/Full_model_trainable_w2v/',
+	store_path='trained_models/Full_model/',
 	verbose=True)
 
 inputMapping = dict()
@@ -55,7 +55,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 32, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 4, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 0}
+training_params = {'n_epochs': 10, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 0}
 
 nmt_model.trainNet(ds, training_params)
 
