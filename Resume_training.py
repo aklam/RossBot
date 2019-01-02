@@ -38,7 +38,7 @@ params['MODEL_SIZE'] = 512
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
 
-params['RELOAD'] = 12
+params['RELOAD'] = 8
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
@@ -112,10 +112,10 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Full_model_trainable_w2v/epoch_12_init.h5',
-    model_name='Ross_train_w2v',
+    weights_path='trained_models/Full_model_trainable_w2v/epoch_8_init.h5',
+    model_name='Ross_train_w2v_start8',
     vocabularies=ds.vocabulary,
-    store_path='trained_models/Ross_train_w2v/',
+    store_path='trained_models/Ross_train_w2v_start8/',
     verbose=True)
 
 inputMapping = dict()
@@ -132,7 +132,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 20, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 2, 'eval_on_sets': [], 'reload_epoch': 12, 'epoch_offset': 12}
+training_params = {'n_epochs': 20, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 2, 'eval_on_sets': [], 'reload_epoch': 8, 'epoch_offset': 8}
 
 print(ds)
 
