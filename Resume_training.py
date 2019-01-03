@@ -38,72 +38,70 @@ params['MODEL_SIZE'] = 512
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
 params['ATTENTION_SIZE'] = 512
 
-params['RELOAD'] = 10
+params['RELOAD'] = 13
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
 
 # This is the new data that I want to train on. Do I need to make a new keras_wrapper.dataset Dataset instance?
-#params['SRC_LAN'] = 'query'
-#params['TRG_LAN'] = 'reply'
-#params['TEXT_FILES'] = {'train': 'Cornell_train_2.', 'val': 'Cornell_valid_2.'}
+
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
-#ds.setInput('data/Ross_train.query',
-#    'train',
-#    type='text',
-#    id='source_text',
-#    tokenization='tokenize_basic',
-#    pad_on_batch=True,
-#    fill='end',
-#    max_text_len=30,
-#    min_occ=0,
-#    overwrite_split=True)
-#
-#ds.setInput('data/Ross_train.reply',
-#    'train',
-#    type='text',
-#    id='state_below',
-#    required=False,
-#    tokenization='tokenize_basic',
-#    pad_on_batch=True,
-#    offset=1,
-#    fill='end',
-#    max_text_len=30,
-#    overwrite_split=True)
-#
-#ds.setOutput('data/Ross_train.reply',
-#    'train',
-#    type='text',
-#    id='target_text',
-#    tokenization='tokenize_basic',
-#    pad_on_batch=True,
-#    sample_weights=True,
-#    max_text_len=30,
-#    min_occ=0,
-#    overwrite_split=True)
-#
-#ds.setInput('data/Ross_valid.query',
-#    'val',
-#    type='text',
-#    id='source_text',
-#    tokenization='tokenize_basic',
-#    pad_on_batch=True,
-#    fill='end',
-#    max_text_len=30,
-#    min_occ=0,
-#    overwrite_split=True)
-#
-#ds.setOutput('data/Ross_valid.reply',
-#    'val',
-#    type='text',
-#    id='target_text',
-#    tokenization='tokenize_basic',
-#    pad_on_batch=True,
-#    sample_weights=True,
-#    max_text_len=30,
-#    min_occ=0,
-#    overwrite_split=True)
+ds.setInput('data/Ross_train.query',
+    'train',
+    type='text',
+    id='source_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    fill='end',
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
+
+ds.setInput('data/Ross_train.reply',
+    'train',
+    type='text',
+    id='state_below',
+    required=False,
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    offset=1,
+    fill='end',
+    max_text_len=30,
+    overwrite_split=True)
+
+ds.setOutput('data/Ross_train.reply',
+    'train',
+    type='text',
+    id='target_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    sample_weights=True,
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
+
+ds.setInput('data/Ross_valid.query',
+    'val',
+    type='text',
+    id='source_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    fill='end',
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
+
+ds.setOutput('data/Ross_valid.reply',
+    'val',
+    type='text',
+    id='target_text',
+    tokenization='tokenize_basic',
+    pad_on_batch=True,
+    sample_weights=True,
+    max_text_len=30,
+    min_occ=0,
+    overwrite_split=True)
 
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
@@ -112,10 +110,10 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Full_model/epoch_10_init.h5',
-    model_name='Full_model_2rnd_trainVecs',
+    weights_path='trained_models/Full_model_2rnd_trainVecs/epoch_13_init.h5',
+    model_name='Ross_Jan3',
     vocabularies=ds.vocabulary,
-    store_path='trained_models/Full_model_2rnd_trainVecs/',
+    store_path='trained_models/Ross_Jan3/',
     verbose=True)
 
 inputMapping = dict()
@@ -132,7 +130,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 15, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 10, 'epoch_offset': 10}
+training_params = {'n_epochs': 20, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 2, 'eval_on_sets': [], 'reload_epoch': 13, 'epoch_offset': 13}
 
 print(ds)
 
