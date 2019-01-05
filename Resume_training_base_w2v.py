@@ -29,14 +29,14 @@ params['DECODER_RNN_TYPE'] = 'GRU'
 
 params['N_LAYERS_ENCODER'] = 2
 params['N_LAYERS_DECODER'] = 2
-params['ENCODER_HIDDEN_SIZE'] = 512
-params['DECODER_HIDDEN_SIZE'] = 512
-params['MODEL_SIZE'] = 512
+params['ENCODER_HIDDEN_SIZE'] = 1024
+params['DECODER_HIDDEN_SIZE'] = 1024
+params['MODEL_SIZE'] = 1024
 params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = True
 params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = True 
 
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
-params['ATTENTION_SIZE'] = 512
+params['ATTENTION_SIZE'] = 1024
 
 params['RELOAD'] = 10
 params['RELOAD_EPOCH'] = True
@@ -54,10 +54,10 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/512/512_Base/epoch_10_init.h5',
-    model_name='512_Trained_w2v_Base',
+    weights_path='trained_models/1024/1024_Base/epoch_10_init.h5',
+    model_name='1024_Trained_w2v_Base',
     vocabularies=ds.vocabulary,
-    store_path='trained_models/512_Trained_w2v_Base/',
+    store_path='trained_models/1024_Trained_w2v_Base/',
     verbose=True)
 
 inputMapping = dict()
