@@ -54,7 +54,7 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/1024/1024_Base/epoch_10_init.h5',
+    weights_path='trained_models/1024_Base/epoch_10_init.h5',
     model_name='1024_Trained_w2v_Base',
     vocabularies=ds.vocabulary,
     store_path='trained_models/1024_Trained_w2v_Base/',
