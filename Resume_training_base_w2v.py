@@ -47,62 +47,6 @@ params['DATA_ROOT_PATH'] = 'data/'
 
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
-ds.setInput('data/Cornell_train_2.query',
-    'train',
-    type='text',
-    id='source_text',
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    fill='end',
-    max_text_len=30,
-    min_occ=0,
-    overwrite_split=True)
-
-ds.setInput('data/Cornell_train_2.reply',
-    'train',
-    type='text',
-    id='state_below',
-    required=False,
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    offset=1,
-    fill='end',
-    max_text_len=30,
-    overwrite_split=True)
-
-ds.setOutput('data/Cornell_train_2.reply',
-    'train',
-    type='text',
-    id='target_text',
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    sample_weights=True,
-    max_text_len=30,
-    min_occ=0,
-    overwrite_split=True)
-
-ds.setInput('data/Cornell_valid_2.query',
-    'val',
-    type='text',
-    id='source_text',
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    fill='end',
-    max_text_len=30,
-    min_occ=0,
-    overwrite_split=True)
-
-ds.setOutput('data/Cornell_valid_2.reply',
-    'val',
-    type='text',
-    id='target_text',
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    sample_weights=True,
-    max_text_len=30,
-    min_occ=0,
-    overwrite_split=True)
-
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
