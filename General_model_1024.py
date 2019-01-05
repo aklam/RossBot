@@ -33,11 +33,18 @@ params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False
 
 params['ATTENTION_SIZE'] = 1024
 
+## Added reload to train epoch11
+params['RELOAD'] = 10
+params['RELOAD_EPOCH'] = True
+params['REBUILD_DATASET'] = False
+params['DATA_ROOT_PATH'] = 'data/'
+
 nmt_model = TranslationModel(params, 
 	model_type='GroundHogModel',
-	model_name='1024_Base',
+    weights_path='trained_models/1024_Base/epoch_10_init.h5',
+	model_name='1024_Base_Epoch11',
 	vocabularies=ds.vocabulary,
-	store_path='trained_models/1024/1024_Base/',
+	store_path='trained_models/1024_Base_Epoch11/',
 	verbose=True)
 
 inputMapping = dict()
@@ -54,7 +61,7 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 18, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 2, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 0, 'epoch_offset': 0}
+training_params = {'n_epochs': 11, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 1, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 10, 'epoch_offset': 10}
 
 nmt_model.trainNet(ds, training_params)
 
