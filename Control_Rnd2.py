@@ -110,9 +110,9 @@ print(ds)
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
     weights_path='trained_models/512_Trained_w2v_Base/epoch_11_init.h5',
-    model_name='Control_M3',
+    model_name='Control_M1',
     vocabularies=ds.vocabulary,
-    store_path='trained_models/Control_M3/',
+    store_path='trained_models/Control_M1/',
     verbose=True)
 
 inputMapping = dict()
