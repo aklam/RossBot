@@ -34,7 +34,7 @@ dataset.setInput(None,
 params['INPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-Control_model = loadModel('trained_models/Control_M3', 22)
+Control_model = loadModel('trained_models/Control_M4', 18)
 
 params_prediction = {'max_batch_size': 50, 'predict_on_sets': ['test'], 'beam_size': 12, 'maxlen': 50, 'model_inputs': ['source_text', 'state_below'], 'model_outputs': ['target_text'], 'dataset_inputs': ['source_text', 'state_below'], 'dataset_outputs': ['target_text'], 'normalize': True, 'alpha_factor': 0.6 }
 
@@ -50,7 +50,7 @@ Control_predictions = decode_predictions_beam_search(Control_predictions, vocab,
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-Control_path = 'Control_M3.pred'
+Control_path = 'Control_M4.pred'
 list2file(Control_path, Control_predictions)
 
 
