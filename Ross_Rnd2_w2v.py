@@ -108,7 +108,7 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Ross_M6/epoch_12_init.h5',
+    weights_path='trained_models/Ross_M6/epoch_22_init.h5',
     model_name='Ross_M7',
     vocabularies=ds.vocabulary,
     store_path='trained_models/Ross_M7/',
