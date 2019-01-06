@@ -34,7 +34,7 @@ dataset.setInput(None,
 params['INPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-Ross_model = loadModel('trained_models/Ross_M2', 18)
+Ross_model = loadModel('trained_models/Ross_M5', 18)
 
 params_prediction = {'max_batch_size': 50, 'predict_on_sets': ['test'], 'beam_size': 12, 'maxlen': 50, 'model_inputs': ['source_text', 'state_below'], 'model_outputs': ['target_text'], 'dataset_inputs': ['source_text', 'state_below'], 'dataset_outputs': ['target_text'], 'normalize': True, 'alpha_factor': 0.6 }
 
@@ -50,7 +50,7 @@ Ross_predictions = decode_predictions_beam_search(Ross_predictions, vocab, verbo
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-Ross_path = 'Ross_M2.pred'
+Ross_path = 'Ross_M5.pred'
 list2file(Ross_path, Ross_predictions)
 
 
