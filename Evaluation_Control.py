@@ -34,7 +34,7 @@ dataset.setInput(None,
 params['INPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = dataset.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-Control_model = loadModel('trained_models/Cornell_Jan3/', 14)
+Control_model = loadModel('trained_models/Control_M1/', 18)
 
 params_prediction = {'max_batch_size': 50, 'predict_on_sets': ['test'], 'beam_size': 12, 'maxlen': 50, 'model_inputs': ['source_text', 'state_below'], 'model_outputs': ['target_text'], 'dataset_inputs': ['source_text', 'state_below'], 'dataset_outputs': ['target_text'], 'normalize': True, 'alpha_factor': 0.6 }
 
@@ -50,7 +50,7 @@ Control_predictions = decode_predictions_beam_search(Control_predictions, vocab,
 from keras_wrapper.extra.read_write import list2file
 from keras_wrapper.extra import evaluation
 
-Control_path = 'Control_M#.pred'
+Control_path = 'Control_M1.pred'
 list2file(Control_path, Control_predictions)
 
 
@@ -74,7 +74,6 @@ extra_vars['language'] = params['TRG_LAN']
 extra_vars['test'] = dict()
 extra_vars['test']['references'] = dataset.extra_variables['test']['target_text']
 Control_metrics = evaluation.select[metric](pred_list=Control_predictions, verbose=1, extra_vars=extra_vars, split='test')
-
 
 
 print("Control:")
