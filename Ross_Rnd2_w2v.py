@@ -29,16 +29,16 @@ params['DECODER_RNN_TYPE'] = 'GRU'
 
 params['N_LAYERS_ENCODER'] = 2
 params['N_LAYERS_DECODER'] = 2
-params['ENCODER_HIDDEN_SIZE'] = 1024
-params['DECODER_HIDDEN_SIZE'] = 1024
-params['MODEL_SIZE'] = 1024
+params['ENCODER_HIDDEN_SIZE'] = 512
+params['DECODER_HIDDEN_SIZE'] = 512
+params['MODEL_SIZE'] = 512
 params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = True
 params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = True 
 
 #params['SKIP_VECTORS_HIDDEN_SIZE'] = 512
-params['ATTENTION_SIZE'] = 1024
+params['ATTENTION_SIZE'] = 512
 
-params['RELOAD'] = 12
+params['RELOAD'] = 11
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
@@ -109,10 +109,10 @@ print(ds)
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/tmp_save/epoch_12_init.h5',
-    model_name='Ross_M5',
+    weights_path='trained_models/512_Trained_w2v_Base/epoch_12_init.h5',
+    model_name='Ross_M2',
     vocabularies=ds.vocabulary,
-    store_path='trained_models/Ross_M5/',
+    store_path='trained_models/Ross_M2/',
     verbose=True)
 
 inputMapping = dict()
@@ -129,6 +129,6 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 18, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 3, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 12, 'epoch_offset': 12}
+training_params = {'n_epochs': 18, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 3, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 11, 'epoch_offset': 11}
 
 nmt_model.trainNet(ds, training_params)
