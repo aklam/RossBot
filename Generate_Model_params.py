@@ -35,4 +35,4 @@ def make_params(model_name, model_size):
 	params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = True 
 	dict2pkl(params, "model_params/"+model_name)
 
-make_params("Ross_M3", 512, True)
+make_params("Ross_M3", 512)
