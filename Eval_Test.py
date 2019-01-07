@@ -86,7 +86,7 @@ params['LR'] = 0.00000000000000000000000000001
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Control_M6_v2/epoch_22_init.h5',
+    weights_path='trained_models/Ross_M6/epoch_22_init.h5',
     model_name='tmp',
     vocabularies=ds.vocabulary,
     store_path='trained_models/tmp/',
