@@ -33,6 +33,10 @@ def make_params(model_name, model_size):
 
 	params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = True
 	params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = True 
+
+	params['RELOAD'] = 22
+	params['MODEL_NAME'] = model_name
 	dict2pkl(params, "model_params/"+model_name)
+
 
 make_params("Ross_M3", 512)
