@@ -29,13 +29,13 @@ params['DECODER_RNN_TYPE'] = 'GRU'
 
 params['N_LAYERS_ENCODER'] = 2
 params['N_LAYERS_DECODER'] = 2
-params['ENCODER_HIDDEN_SIZE'] = 512
-params['DECODER_HIDDEN_SIZE'] = 512
-params['MODEL_SIZE'] = 512
+params['ENCODER_HIDDEN_SIZE'] = 1024
+params['DECODER_HIDDEN_SIZE'] = 1024
+params['MODEL_SIZE'] = 1024
 params['SRC_PRETRAINED_VECTORS_TRAINABLE'] = False
 params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False 
 
-params['ATTENTION_SIZE'] = 512
+params['ATTENTION_SIZE'] = 1024
 
 params['RELOAD'] = 18
 params['RELOAD_EPOCH'] = True
