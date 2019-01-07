@@ -37,7 +37,7 @@ params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False
 
 params['ATTENTION_SIZE'] = 1024
 
-params['RELOAD'] = 36
+params['RELOAD'] = 18
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
@@ -86,7 +86,7 @@ params['LR'] = 0.00000000000000000000000000001
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Control_M7/epoch_36_init.h5',
+    weights_path='trained_models/Ross_M5/epoch_18_init.h5',
     model_name='tmp',
     vocabularies=ds.vocabulary,
     store_path='trained_models/tmp/',
@@ -106,6 +106,6 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 37, 'batch_size': 100,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 36, 'epoch_offset': 36}
+training_params = {'n_epochs': 19, 'batch_size': 100,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 18, 'epoch_offset': 18}
 
 nmt_model.trainNet(ds, training_params)
