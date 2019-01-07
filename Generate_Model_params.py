@@ -104,7 +104,7 @@ ds.setOutput('data/Ross_test.reply',
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-params['LR'] = 0.0000000000000000001
+params['LR'] = 0.00000000000000000000000000001
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
