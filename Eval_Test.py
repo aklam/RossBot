@@ -37,7 +37,7 @@ params['TRG_PRETRAINED_VECTORS_TRAINABLE'] = False
 
 params['ATTENTION_SIZE'] = 512
 
-params['RELOAD'] = 22
+params['RELOAD'] = 18
 params['RELOAD_EPOCH'] = True
 params['REBUILD_DATASET'] = False
 params['DATA_ROOT_PATH'] = 'data/'
@@ -79,28 +79,6 @@ ds.setOutput('data/Ross_test.reply',
     min_occ=0,
     overwrite_split=True)
 
-ds.setInput('data/Ross_test.query',
-    'val',
-    type='text',
-    id='source_text',
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    fill='end',
-    max_text_len=30,
-    min_occ=0,
-    overwrite_split=True)
-
-ds.setOutput('data/Ross_test.reply',
-    'val',
-    type='text',
-    id='target_text',
-    tokenization='tokenize_basic',
-    pad_on_batch=True,
-    sample_weights=True,
-    max_text_len=30,
-    min_occ=0,
-    overwrite_split=True)
-
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
@@ -108,7 +86,7 @@ params['LR'] = 0.00000000000000000000000000001
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
-    weights_path='trained_models/Control_M3/epoch_22_init.h5',
+    weights_path='trained_models/Control_M2/epoch_18_init.h5',
     model_name='tmp',
     vocabularies=ds.vocabulary,
     store_path='trained_models/tmp/',
@@ -128,6 +106,6 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 23, 'batch_size': 150,'maxlen': 30, 'epochs_for_save': 5,'n_parallel_loaders': 8, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 22, 'epoch_offset': 22}
+training_params = {'n_epochs': 23, 'batch_size': 150,'maxlen': 30, 'epochs_for_save': 5,'n_parallel_loaders': 8, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 18, 'epoch_offset': 18}
 
 nmt_model.trainNet(ds, training_params)
