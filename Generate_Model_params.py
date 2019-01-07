@@ -45,7 +45,7 @@ params['DATA_ROOT_PATH'] = 'data/'
 
 params['TOKENIZATION_METHOD'] = 'tokenize_basic'
 
-ds.setInput('data/dumby.query',
+ds.setInput('data/Ross_test.query',
     'train',
     type='text',
     id='source_text',
@@ -56,7 +56,7 @@ ds.setInput('data/dumby.query',
     min_occ=0,
     overwrite_split=True)
 
-ds.setInput('data/dumby.reply',
+ds.setInput('data/Ross_test.reply',
     'train',
     type='text',
     id='state_below',
@@ -68,7 +68,7 @@ ds.setInput('data/dumby.reply',
     max_text_len=30,
     overwrite_split=True)
 
-ds.setOutput('data/dumby.reply',
+ds.setOutput('data/Ross_test.reply',
     'train',
     type='text',
     id='target_text',
@@ -104,7 +104,7 @@ ds.setOutput('data/Ross_test.reply',
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-print(ds)
+params['LR'] = 0.000000000001
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
@@ -128,6 +128,6 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 23, 'batch_size': 20,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 22, 'epoch_offset': 22}
+training_params = {'n_epochs': 23, 'batch_size': 100,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 22, 'epoch_offset': 22}
 
 nmt_model.trainNet(ds, training_params)
