@@ -104,7 +104,7 @@ ds.setOutput('data/Ross_test.reply',
 params['INPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['INPUTS_IDS_DATASET'][0]]
 params['OUTPUT_VOCABULARY_SIZE'] = ds.vocabulary_len[params['OUTPUTS_IDS_DATASET'][0]]
 
-params['LR'] = 0.000000000001
+params['LR'] = 0.0000000000000000001
 
 nmt_model = TranslationModel(params, 
     model_type='GroundHogModel',
@@ -128,6 +128,6 @@ for i, id_out in enumerate(params['OUTPUTS_IDS_DATASET']):
     outputMapping[id_dest] = pos_target
 nmt_model.setOutputsMapping(outputMapping)
 
-training_params = {'n_epochs': 23, 'batch_size': 100,'maxlen': 30, 'epochs_for_save': 5, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 22, 'epoch_offset': 22}
+training_params = {'n_epochs': 23, 'batch_size': 150,'maxlen': 30, 'epochs_for_save': 5,'n_parallel_loaders': 8, 'verbose': 1, 'eval_on_sets': [], 'reload_epoch': 22, 'epoch_offset': 22}
 
 nmt_model.trainNet(ds, training_params)
